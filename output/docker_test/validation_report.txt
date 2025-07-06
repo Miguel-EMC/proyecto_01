@@ -1,0 +1,1292 @@
+=== REPORTE DE VALIDACIÓN MANUAL ===
+
+Archivo de audio: data/training/202003301830/202003301830.mp3
+Total de errores detectados: 183
+
+Error 1:
+  Tiempo: 40.59s - 40.95s
+  Transcripción esperada: 'Japón'
+  Transcripción IPU: 'Japón tiene previsto ampliar la prohibición de entrada al país a viajeros de otras nacionalidades procedentes de Estados Unidos, China,'
+  Similitud fonética: 0.08
+  Recomendación: Validar manualmente usando Praat
+
+Error 2:
+  Tiempo: 40.95s - 41.32s
+  Transcripción esperada: 'tiene'
+  Transcripción IPU: 'Corea del Sur,'
+  Similitud fonética: 0.09
+  Recomendación: Validar manualmente usando Praat
+
+Error 3:
+  Tiempo: 41.32s - 41.68s
+  Transcripción esperada: 'previsto'
+  Transcripción IPU: 'la mayoría de naciones europeas y algunos lugares del Sudeste Asiático,'
+  Similitud fonética: 0.15
+  Recomendación: Validar manualmente usando Praat
+
+Error 4:
+  Tiempo: 41.68s - 42.05s
+  Transcripción esperada: 'ampliar'
+  Transcripción IPU: 'con la propagación de la pandemia de coronavirus como trasfondo.'
+  Similitud fonética: 0.12
+  Recomendación: Validar manualmente usando Praat
+
+Error 5:
+  Tiempo: 42.05s - 42.42s
+  Transcripción esperada: 'la'
+  Transcripción IPU: 'Además, el Gobierno japonés ha decidido aumentar a tres'
+  Similitud fonética: 0.08
+  Recomendación: Validar manualmente usando Praat
+
+Error 6:
+  Tiempo: 42.42s - 42.78s
+  Transcripción esperada: 'prohibición'
+  Transcripción IPU: 'el nivel de alerta de viajes a todo el territorio estadounidense;'
+  Similitud fonética: 0.17
+  Recomendación: Validar manualmente usando Praat
+
+Error 7:
+  Tiempo: 42.78s - 43.15s
+  Transcripción esperada: 'de'
+  Transcripción IPU: 'En este contexto, recomienda cancelar todos los viajes a Estados Unidos.'
+  Similitud fonética: 0.06
+  Recomendación: Validar manualmente usando Praat
+
+Error 8:
+  Tiempo: 43.15s - 43.52s
+  Transcripción esperada: 'entrada'
+  Transcripción IPU: 'Asimismo, se prohíbe la entrada a Japón'
+  Similitud fonética: 0.31
+  Recomendación: Validar manualmente usando Praat
+
+Error 9:
+  Tiempo: 43.52s - 43.88s
+  Transcripción esperada: 'al'
+  Transcripción IPU: 'a todas las personas de nacionalidad extranjera que hayan estado en ese país'
+  Similitud fonética: 0.06
+  Recomendación: Validar manualmente usando Praat
+
+Error 10:
+  Tiempo: 43.88s - 44.25s
+  Transcripción esperada: 'país'
+  Transcripción IPU: 'en las últimas dos semanas.'
+  Similitud fonética: 0.22
+  Recomendación: Validar manualmente usando Praat
+
+Error 11:
+  Tiempo: 44.25s - 44.61s
+  Transcripción esperada: 'a'
+  Transcripción IPU: 'Las medidas relacionadas con Estados Unidos se deben al aumento marcado de contagios allí.'
+  Similitud fonética: 0.05
+  Recomendación: Validar manualmente usando Praat
+
+Error 12:
+  Tiempo: 44.61s - 44.98s
+  Transcripción esperada: 'viajeros'
+  Transcripción IPU: 'Japó...'
+  Similitud fonética: 0.45
+  Recomendación: Validar manualmente usando Praat
+
+Error 13:
+  Tiempo: 44.98s - 45.35s
+  Transcripción esperada: 'de'
+  Transcripción IPU: 'Japón tiene previsto hacer lo propio en el caso de China y Corea del Sur;'
+  Similitud fonética: 0.04
+  Recomendación: Validar manualmente usando Praat
+
+Error 14:
+  Tiempo: 45.35s - 45.71s
+  Transcripción esperada: 'otras'
+  Transcripción IPU: 'De algunos países de Europa, entre ellos el Reino Unido,'
+  Similitud fonética: 0.12
+  Recomendación: Validar manualmente usando Praat
+
+Error 15:
+  Tiempo: 45.71s - 46.08s
+  Transcripción esperada: 'nacionalidades'
+  Transcripción IPU: 'y de algunas zonas del Sudeste Asiático, como, por ejemplo, Tailandia.'
+  Similitud fonética: 0.19
+  Recomendación: Validar manualmente usando Praat
+
+Error 16:
+  Tiempo: 46.08s - 46.45s
+  Transcripción esperada: 'procedentes'
+  Transcripción IPU: 'Con estas medidas, se prohíbe el ingreso a las personas con pasaporte de un tercio, aproximadamente, de los países y territorios del mundo,'
+  Similitud fonética: 0.11
+  Recomendación: Validar manualmente usando Praat
+
+Error 17:
+  Tiempo: 46.45s - 46.81s
+  Transcripción esperada: 'de'
+  Transcripción IPU: 'salvo que tengan un motivo especial para entrar.'
+  Similitud fonética: 0.07
+  Recomendación: Validar manualmente usando Praat
+
+Error 18:
+  Tiempo: 46.81s - 47.18s
+  Transcripción esperada: 'Estados'
+  Transcripción IPU: 'El resto de países y territorios pasarán al nivel dos de alerta;'
+  Similitud fonética: 0.17
+  Recomendación: Validar manualmente usando Praat
+
+Error 19:
+  Tiempo: 47.18s - 47.55s
+  Transcripción esperada: 'Unidos,'
+  Transcripción IPU: 'En ese caso, se insta a las personas de nacionalidad japonesa a evitar viajar'
+  Similitud fonética: 0.13
+  Recomendación: Validar manualmente usando Praat
+
+Error 20:
+  Tiempo: 47.55s - 47.91s
+  Transcripción esperada: 'China,'
+  Transcripción IPU: 'a esos lugares,'
+  Similitud fonética: 0.16
+  Recomendación: Validar manualmente usando Praat
+
+Error 21:
+  Tiempo: 47.91s - 48.15s
+  Transcripción esperada: 'Corea'
+  Transcripción IPU: 'a menos que sea estrictamente necesario. @'
+  Similitud fonética: 0.13
+  Recomendación: Validar manualmente usando Praat
+
+Error 22:
+  Tiempo: 48.15s - 48.39s
+  Transcripción esperada: 'del'
+  Transcripción IPU: 'El Gobierno de Japón ha dado a conocer que cerca de la mitad de los'
+  Similitud fonética: 0.09
+  Recomendación: Validar manualmente usando Praat
+
+Error 23:
+  Tiempo: 48.39s - 48.63s
+  Transcripción esperada: 'Sur,'
+  Transcripción IPU: 'casi doscientos sesenta japoneses atrapados en Perú'
+  Similitud fonética: 0.09
+  Recomendación: Validar manualmente usando Praat
+
+Error 24:
+  Tiempo: 48.63s - 48.96s
+  Transcripción esperada: 'la'
+  Transcripción IPU: 'por la pandemia de coronavirus'
+  Similitud fonética: 0.15
+  Recomendación: Validar manualmente usando Praat
+
+Error 25:
+  Tiempo: 48.96s - 49.29s
+  Transcripción esperada: 'mayoría'
+  Transcripción IPU: 'ha salido del país.'
+  Similitud fonética: 0.12
+  Recomendación: Validar manualmente usando Praat
+
+Error 26:
+  Tiempo: 49.29s - 49.62s
+  Transcripción esperada: 'de'
+  Transcripción IPU: 'Así lo ha anunciado hoy lunes ante la prensa el secretario de en jefe del Gabinete japonés, Suga Yoshihide.'
+  Similitud fonética: 0.04
+  Recomendación: Validar manualmente usando Praat
+
+Error 27:
+  Tiempo: 49.62s - 49.95s
+  Transcripción esperada: 'naciones'
+  Transcripción IPU: 'El sábado, veintinueve turistas japoneses pudieron partir de Perú a bordo de un vuelo fletado por el Gobierno de Taiwán.'
+  Similitud fonética: 0.05
+  Recomendación: Validar manualmente usando Praat
+
+Error 28:
+  Tiempo: 49.95s - 50.29s
+  Transcripción esperada: 'europeas'
+  Transcripción IPU: 'A este respecto, Suga ha explicado que todos ellos habían llegado a Miami, EE. UU.,'
+  Similitud fonética: 0.12
+  Recomendación: Validar manualmente usando Praat
+
+Error 29:
+  Tiempo: 50.29s - 50.62s
+  Transcripción esperada: 'y'
+  Transcripción IPU: 'y ha manifestado su agradecimiento a la Administración taiwanesa por haberlo hecho posible.'
+  Similitud fonética: 0.07
+  Recomendación: Validar manualmente usando Praat
+
+Error 30:
+  Tiempo: 50.62s - 50.95s
+  Transcripción esperada: 'algunos'
+  Transcripción IPU: 'Según Suga, el domingo, otros ciento cuatro japoneses abandonaron Perú con destino a México'
+  Similitud fonética: 0.11
+  Recomendación: Validar manualmente usando Praat
+
+Error 31:
+  Tiempo: 50.95s - 51.28s
+  Transcripción esperada: 'lugares'
+  Transcripción IPU: 'en un vuelo fletado por una agencia de viajes.'
+  Similitud fonética: 0.17
+  Recomendación: Validar manualmente usando Praat
+
+Error 32:
+  Tiempo: 51.28s - 51.61s
+  Transcripción esperada: 'del'
+  Transcripción IPU: 'El quince de marzo, el Gobierno peruano declaró el estado de emergencia y suspendió todos los vuelos internacionales. @'
+  Similitud fonética: 0.04
+  Recomendación: Validar manualmente usando Praat
+
+Error 33:
+  Tiempo: 51.61s - 51.94s
+  Transcripción esperada: 'Sudeste'
+  Transcripción IPU: 'El Partido Liberal Demócrata, el PLD,'
+  Similitud fonética: 0.17
+  Recomendación: Validar manualmente usando Praat
+
+Error 34:
+  Tiempo: 51.94s - 52.27s
+  Transcripción esperada: 'Asiático,'
+  Transcripción IPU: 'ha elaborado un borrador con propuestas sobre un paquete de estímulo para hacer frente a la repercusión económica de la pandemia de coronavirus.'
+  Similitud fonética: 0.08
+  Recomendación: Validar manualmente usando Praat
+
+Error 35:
+  Tiempo: 52.27s - 52.59s
+  Transcripción esperada: 'con'
+  Transcripción IPU: 'El principal miembro de la coalición de Gobierno en Japón'
+  Similitud fonética: 0.11
+  Recomendación: Validar manualmente usando Praat
+
+Error 36:
+  Tiempo: 52.59s - 52.90s
+  Transcripción esperada: 'la'
+  Transcripción IPU: 'insta a que se aprueben medidas de mayor envergadura'
+  Similitud fonética: 0.03
+  Recomendación: Validar manualmente usando Praat
+
+Error 37:
+  Tiempo: 52.90s - 53.22s
+  Transcripción esperada: 'propagación'
+  Transcripción IPU: 'que las aplicadas durante la crisis económica mundial'
+  Similitud fonética: 0.17
+  Recomendación: Validar manualmente usando Praat
+
+Error 38:
+  Tiempo: 53.22s - 53.54s
+  Transcripción esperada: 'de'
+  Transcripción IPU: 'de dos mil ocho.'
+  Similitud fonética: 0.27
+  Recomendación: Validar manualmente usando Praat
+
+Error 39:
+  Tiempo: 53.54s - 53.86s
+  Transcripción esperada: 'la'
+  Transcripción IPU: 'Concretamente, el PLD propone unos ciento ochenta y seis mil millones de dólares de gasto fiscal'
+  Similitud fonética: 0.05
+  Recomendación: Validar manualmente usando Praat
+
+Error 40:
+  Tiempo: 53.86s - 54.17s
+  Transcripción esperada: 'pandemia'
+  Transcripción IPU: 'y cerca de quinientos sesenta mil millones de dólares para las empresas.'
+  Similitud fonética: 0.13
+  Recomendación: Validar manualmente usando Praat
+
+Error 41:
+  Tiempo: 54.17s - 54.49s
+  Transcripción esperada: 'de'
+  Transcripción IPU: 'En dos mil ocho, el paquete económico fue de más de ciento cuarenta mil millones de dólares destinados al gasto fiscal'
+  Similitud fonética: 0.04
+  Recomendación: Validar manualmente usando Praat
+
+Error 42:
+  Tiempo: 54.49s - 54.81s
+  Transcripción esperada: 'coronavirus'
+  Transcripción IPU: 'y de más de quinientos veintitrés mil millones de dólares para las empresas.'
+  Similitud fonética: 0.15
+  Recomendación: Validar manualmente usando Praat
+
+Error 43:
+  Tiempo: 54.81s - 55.13s
+  Transcripción esperada: 'como'
+  Transcripción IPU: 'Además, se sugiere que el Gobierno conceda unos nueve mil trecientos millones de dólares en subvenciones'
+  Similitud fonética: 0.09
+  Recomendación: Validar manualmente usando Praat
+
+Error 44:
+  Tiempo: 55.13s - 55.44s
+  Transcripción esperada: 'trasfondo.'
+  Transcripción IPU: 'a las pymes y los autónomos,'
+  Similitud fonética: 0.29
+  Recomendación: Validar manualmente usando Praat
+
+Error 45:
+  Tiempo: 55.44s - 55.77s
+  Transcripción esperada: 'Además,'
+  Transcripción IPU: 'y que no sea necesario reembolsar estos subsidios.'
+  Similitud fonética: 0.13
+  Recomendación: Validar manualmente usando Praat
+
+Error 46:
+  Tiempo: 55.77s - 56.10s
+  Transcripción esperada: 'el'
+  Transcripción IPU: 'Por otra parte, se insta a la Administración a incrementar la cuantía de los fondos de reserva,'
+  Similitud fonética: 0.05
+  Recomendación: Validar manualmente usando Praat
+
+Error 47:
+  Tiempo: 56.10s - 56.42s
+  Transcripción esperada: 'Gobierno'
+  Transcripción IPU: 'que en la actualidad ascienden a unos cuatro mil seiscientos millones de dólares,'
+  Similitud fonética: 0.15
+  Recomendación: Validar manualmente usando Praat
+
+Error 48:
+  Tiempo: 56.42s - 56.75s
+  Transcripción esperada: 'japonés'
+  Transcripción IPU: 'para el año fiscal que dará comienzo en abril,'
+  Similitud fonética: 0.11
+  Recomendación: Validar manualmente usando Praat
+
+Error 49:
+  Tiempo: 56.75s - 57.08s
+  Transcripción esperada: 'ha'
+  Transcripción IPU: 'y que se destinen a la lucha contra el coronavirus.'
+  Similitud fonética: 0.06
+  Recomendación: Validar manualmente usando Praat
+
+Error 50:
+  Tiempo: 57.08s - 57.40s
+  Transcripción esperada: 'decidido'
+  Transcripción IPU: 'Otra opción sería crear un fondo de reserva exclusivo para estas medidas.'
+  Similitud fonética: 0.14
+  Recomendación: Validar manualmente usando Praat
+
+Error 51:
+  Tiempo: 57.40s - 57.73s
+  Transcripción esperada: 'aumentar'
+  Transcripción IPU: 'Otra de las propuestas del PLD'
+  Similitud fonética: 0.16
+  Recomendación: Validar manualmente usando Praat
+
+Error 52:
+  Tiempo: 57.73s - 58.06s
+  Transcripción esperada: 'a'
+  Transcripción IPU: 'es dar efectivo a las familias que tengan dificultades para llegar a final de mes por disponer de menos ingresos debido al brote.'
+  Similitud fonética: 0.04
+  Recomendación: Validar manualmente usando Praat
+
+Error 53:
+  Tiempo: 58.06s - 58.38s
+  Transcripción esperada: 'tres'
+  Transcripción IPU: 'No se menciona una cantidad específica,'
+  Similitud fonética: 0.08
+  Recomendación: Validar manualmente usando Praat
+
+Error 54:
+  Tiempo: 58.38s - 58.67s
+  Transcripción esperada: 'el'
+  Transcripción IPU: 'pero se señala que debe adaptarse al número de miembros por hogar.'
+  Similitud fonética: 0.07
+  Recomendación: Validar manualmente usando Praat
+
+Error 55:
+  Tiempo: 58.67s - 58.95s
+  Transcripción esperada: 'nivel'
+  Transcripción IPU: 'El Gobierno aprobará sus medidas económicas la próxima semana,'
+  Similitud fonética: 0.12
+  Recomendación: Validar manualmente usando Praat
+
+Error 56:
+  Tiempo: 58.95s - 59.24s
+  Transcripción esperada: 'de'
+  Transcripción IPU: 'como fecha más temprana. @'
+  Similitud fonética: 0.11
+  Recomendación: Validar manualmente usando Praat
+
+Error 57:
+  Tiempo: 59.24s - 59.52s
+  Transcripción esperada: 'alerta'
+  Transcripción IPU: 'La gobernadora de Tokio, Koike Yuriko, ha declarado que intentará identificar la ruta de contagio de los casos de coronavirus detectados en la capital'
+  Similitud fonética: 0.06
+  Recomendación: Validar manualmente usando Praat
+
+Error 58:
+  Tiempo: 59.52s - 59.81s
+  Transcripción esperada: 'de'
+  Transcripción IPU: 'y colaborará con expertos para trazar medidas.'
+  Similitud fonética: 0.06
+  Recomendación: Validar manualmente usando Praat
+
+Error 59:
+  Tiempo: 59.81s - 60.09s
+  Transcripción esperada: 'viajes'
+  Transcripción IPU: 'Koike ha dicho hoy lunes ante la prensa que muchos tokiotas'
+  Similitud fonética: 0.12
+  Recomendación: Validar manualmente usando Praat
+
+Error 60:
+  Tiempo: 60.09s - 60.38s
+  Transcripción esperada: 'a'
+  Transcripción IPU: 'le habían hecho caso y se habían quedado en casa el fin de semana.'
+  Similitud fonética: 0.04
+  Recomendación: Validar manualmente usando Praat
+
+Error 61:
+  Tiempo: 60.38s - 60.66s
+  Transcripción esperada: 'todo'
+  Transcripción IPU: 'Por ello, desea que la gente siga colaborando e insta a no salir incluso entre semana,'
+  Similitud fonética: 0.10
+  Recomendación: Validar manualmente usando Praat
+
+Error 62:
+  Tiempo: 60.66s - 60.94s
+  Transcripción esperada: 'el'
+  Transcripción IPU: 'salvo que sea estrictamente necesario.'
+  Similitud fonética: 0.08
+  Recomendación: Validar manualmente usando Praat
+
+Error 63:
+  Tiempo: 60.94s - 61.23s
+  Transcripción esperada: 'territorio'
+  Transcripción IPU: 'Además, la gobernadora ha hablado sobre los sesenta y ocho casos nuevos que se detectaron el domingo,'
+  Similitud fonética: 0.12
+  Recomendación: Validar manualmente usando Praat
+
+Error 64:
+  Tiempo: 61.23s - 61.51s
+  Transcripción esperada: 'estadounidense;'
+  Transcripción IPU: 'la mayor cifra diaria para Tokio hasta la fecha.'
+  Similitud fonética: 0.11
+  Recomendación: Validar manualmente usando Praat
+
+Error 65:
+  Tiempo: 61.51s - 61.86s
+  Transcripción esperada: 'En'
+  Transcripción IPU: 'A este respecto, ha comentado que se cree'
+  Similitud fonética: 0.11
+  Recomendación: Validar manualmente usando Praat
+
+Error 66:
+  Tiempo: 61.86s - 62.20s
+  Transcripción esperada: 'este'
+  Transcripción IPU: 'que muchos de los contagios ocurrieron en hospitales,'
+  Similitud fonética: 0.12
+  Recomendación: Validar manualmente usando Praat
+
+Error 67:
+  Tiempo: 62.20s - 62.54s
+  Transcripción esperada: 'contexto,'
+  Transcripción IPU: 'y que es necesario investigar a conciencia la ruta de infección de aquellos casos en que se desconozca.'
+  Similitud fonética: 0.13
+  Recomendación: Validar manualmente usando Praat
+
+Error 68:
+  Tiempo: 62.54s - 62.88s
+  Transcripción esperada: 'recomienda'
+  Transcripción IPU: 'Koike ha vuelto a pedirle a la ciudadanía que se abstenga de salir de casa por la noche.'
+  Similitud fonética: 0.11
+  Recomendación: Validar manualmente usando Praat
+
+Error 69:
+  Tiempo: 62.88s - 63.23s
+  Transcripción esperada: 'cancelar'
+  Transcripción IPU: 'Por otra parte, ha anunciado que se reunirá, hoy mismo, con una comisión del Ministerio de Salud'
+  Similitud fonética: 0.10
+  Recomendación: Validar manualmente usando Praat
+
+Error 70:
+  Tiempo: 63.23s - 63.57s
+  Transcripción esperada: 'todos'
+  Transcripción IPU: 'encargado de los focos infecciosos.'
+  Similitud fonética: 0.15
+  Recomendación: Validar manualmente usando Praat
+
+Error 71:
+  Tiempo: 63.57s - 63.91s
+  Transcripción esperada: 'los'
+  Transcripción IPU: 'Su intención, ha dicho, es cooperar'
+  Similitud fonética: 0.08
+  Recomendación: Validar manualmente usando Praat
+
+Error 72:
+  Tiempo: 63.91s - 64.25s
+  Transcripción esperada: 'viajes'
+  Transcripción IPU: 'con el para estudiar la situación actual de la capital y ver qué medidas se toman. @'
+  Similitud fonética: 0.08
+  Recomendación: Validar manualmente usando Praat
+
+Error 73:
+  Tiempo: 64.25s - 64.60s
+  Transcripción esperada: 'a'
+  Transcripción IPU: 'Los fabricantes japoneses de automóviles van a suspender de forma parcial la producción en territorio nipón'
+  Similitud fonética: 0.04
+  Recomendación: Validar manualmente usando Praat
+
+Error 74:
+  Tiempo: 64.60s - 64.94s
+  Transcripción esperada: 'Estados'
+  Transcripción IPU: 'debido al descenso en la demanda de vehículos nuevos y a la dificultad, cada vez mayor,'
+  Similitud fonética: 0.15
+  Recomendación: Validar manualmente usando Praat
+
+Error 75:
+  Tiempo: 64.94s - 65.28s
+  Transcripción esperada: 'Unidos.'
+  Transcripción IPU: 'de conseguir piezas procedentes de otros países'
+  Similitud fonética: 0.19
+  Recomendación: Validar manualmente usando Praat
+
+Error 76:
+  Tiempo: 65.28s - 65.59s
+  Transcripción esperada: 'Asimismo,'
+  Transcripción IPU: 'por la pandemia.'
+  Similitud fonética: 0.14
+  Recomendación: Validar manualmente usando Praat
+
+Error 77:
+  Tiempo: 65.59s - 65.90s
+  Transcripción esperada: 'se'
+  Transcripción IPU: 'Mazda y Mitsubishi decidieron suspender la producción desde finales de la semana pasada hasta el próximo mes.'
+  Similitud fonética: 0.06
+  Recomendación: Validar manualmente usando Praat
+
+Error 78:
+  Tiempo: 65.90s - 66.21s
+  Transcripción esperada: 'prohíbe'
+  Transcripción IPU: 'Toyota, Honda, Nissan y Suzuki'
+  Similitud fonética: 0.22
+  Recomendación: Validar manualmente usando Praat
+
+Error 79:
+  Tiempo: 66.21s - 66.52s
+  Transcripción esperada: 'la'
+  Transcripción IPU: 'tienen previsto hacer lo propio en abril.'
+  Similitud fonética: 0.08
+  Recomendación: Validar manualmente usando Praat
+
+Error 80:
+  Tiempo: 66.52s - 66.83s
+  Transcripción esperada: 'entrada'
+  Transcripción IPU: 'En un principio, los fabricantes japoneses de vehículos notaron la repercusión del brote de coronavirus principalmente en China,'
+  Similitud fonética: 0.06
+  Recomendación: Validar manualmente usando Praat
+
+Error 81:
+  Tiempo: 66.83s - 67.14s
+  Transcripción esperada: 'a'
+  Transcripción IPU: 'donde cerraron fábricas.'
+  Similitud fonética: 0.15
+  Recomendación: Validar manualmente usando Praat
+
+Error 82:
+  Tiempo: 67.14s - 67.45s
+  Transcripción esperada: 'Japón'
+  Transcripción IPU: 'Consecuentemente, hubo problemas en el suministro de piezas a Japón.'
+  Similitud fonética: 0.16
+  Recomendación: Validar manualmente usando Praat
+
+Error 83:
+  Tiempo: 67.45s - 67.76s
+  Transcripción esperada: 'a'
+  Transcripción IPU: 'Aunque esas fábricas han reanudado la actividad, la demanda local de vehículos nuevos ha disminuido drásticamente:'
+  Similitud fonética: 0.03
+  Recomendación: Validar manualmente usando Praat
+
+Error 84:
+  Tiempo: 67.76s - 68.06s
+  Transcripción esperada: 'todas'
+  Transcripción IPU: 'En febrero, las ventas fueron en torno a un ochenta por ciento menores'
+  Similitud fonética: 0.11
+  Recomendación: Validar manualmente usando Praat
+
+Error 85:
+  Tiempo: 68.06s - 68.36s
+  Transcripción esperada: 'las'
+  Transcripción IPU: 'que en el mismo período de dos mil diecinueve.'
+  Similitud fonética: 0.13
+  Recomendación: Validar manualmente usando Praat
+
+Error 86:
+  Tiempo: 68.36s - 68.66s
+  Transcripción esperada: 'personas'
+  Transcripción IPU: 'Se cree que esta situación'
+  Similitud fonética: 0.17
+  Recomendación: Validar manualmente usando Praat
+
+Error 87:
+  Tiempo: 68.66s - 68.96s
+  Transcripción esperada: 'de'
+  Transcripción IPU: 'se dará durante un tiempo.'
+  Similitud fonética: 0.15
+  Recomendación: Validar manualmente usando Praat
+
+Error 88:
+  Tiempo: 68.96s - 69.26s
+  Transcripción esperada: 'nacionalidad'
+  Transcripción IPU: 'Los fabricantes japoneses de automóviles también han cerrado fábricas en Europa y Estados Unidos,'
+  Similitud fonética: 0.10
+  Recomendación: Validar manualmente usando Praat
+
+Error 89:
+  Tiempo: 69.26s - 69.56s
+  Transcripción esperada: 'extranjera'
+  Transcripción IPU: 'entre otros lugares.'
+  Similitud fonética: 0.32
+  Recomendación: Validar manualmente usando Praat
+
+Error 90:
+  Tiempo: 69.56s - 69.86s
+  Transcripción esperada: 'que'
+  Transcripción IPU: 'Según varios analistas, las ventas se reducirán drásticamente, lo cual afectará,'
+  Similitud fonética: 0.04
+  Recomendación: Validar manualmente usando Praat
+
+Error 91:
+  Tiempo: 69.86s - 70.16s
+  Transcripción esperada: 'hayan'
+  Transcripción IPU: 'sin duda,'
+  Similitud fonética: 0.33
+  Recomendación: Validar manualmente usando Praat
+
+Error 92:
+  Tiempo: 70.16s - 70.46s
+  Transcripción esperada: 'estado'
+  Transcripción IPU: 'a los beneficios de las empresas. @'
+  Similitud fonética: 0.12
+  Recomendación: Validar manualmente usando Praat
+
+Error 93:
+  Tiempo: 70.46s - 70.77s
+  Transcripción esperada: 'en'
+  Transcripción IPU: 'El veterano comediante japonés Shimura Ken falleció el domingo por la noche en un hospital de Tokio.'
+  Similitud fonética: 0.05
+  Recomendación: Validar manualmente usando Praat
+
+Error 94:
+  Tiempo: 70.77s - 71.07s
+  Transcripción esperada: 'ese'
+  Transcripción IPU: 'Se confirmó que el famoso actor, de setenta años de edad, se había infectado con coronavirus.'
+  Similitud fonética: 0.07
+  Recomendación: Validar manualmente usando Praat
+
+Error 95:
+  Tiempo: 71.07s - 71.37s
+  Transcripción esperada: 'país'
+  Transcripción IPU: 'El diecisiete de marzo dijo no sentirse bien y lo trasladaron a un hospital donde le diagnosticaron un grave caso de neumonía y se le sometió a tratamiento.'
+  Similitud fonética: 0.04
+  Recomendación: Validar manualmente usando Praat
+
+Error 96:
+  Tiempo: 71.37s - 71.66s
+  Transcripción esperada: 'en'
+  Transcripción IPU: 'El veinticinco de marzo, su representante dio a conocer que había dado positivo en una prueba de coronavirus.'
+  Similitud fonética: 0.04
+  Recomendación: Validar manualmente usando Praat
+
+Error 97:
+  Tiempo: 71.66s - 71.95s
+  Transcripción esperada: 'las'
+  Transcripción IPU: 'Shimura tenía una larga carrera en la televisión, sin embargo, se fue alejando de la representación de comedia'
+  Similitud fonética: 0.06
+  Recomendación: Validar manualmente usando Praat
+
+Error 98:
+  Tiempo: 71.95s - 72.24s
+  Transcripción esperada: 'últimas'
+  Transcripción IPU: 'y en dos mil seis se convirtió en el líder de una compañía teatral.'
+  Similitud fonética: 0.12
+  Recomendación: Validar manualmente usando Praat
+
+Error 99:
+  Tiempo: 72.24s - 72.53s
+  Transcripción esperada: 'dos'
+  Transcripción IPU: 'También tocaba el shamisen,'
+  Similitud fonética: 0.11
+  Recomendación: Validar manualmente usando Praat
+
+Error 100:
+  Tiempo: 72.53s - 72.83s
+  Transcripción esperada: 'semanas.'
+  Transcripción IPU: 'un instrumentro japonés tradicional de tres cuerdas.'
+  Similitud fonética: 0.17
+  Recomendación: Validar manualmente usando Praat
+
+Error 101:
+  Tiempo: 72.83s - 73.15s
+  Transcripción esperada: 'Las'
+  Transcripción IPU: 'Después de cumplir setenta años el mes pasado, continuó siendo el presentador de programas televisivos de variedades. @'
+  Similitud fonética: 0.04
+  Recomendación: Validar manualmente usando Praat
+
+Error 102:
+  Tiempo: 73.15s - 73.48s
+  Transcripción esperada: 'medidas'
+  Transcripción IPU: 'descanso'
+  Similitud fonética: 0.33
+  Recomendación: Validar manualmente usando Praat
+
+Error 103:
+  Tiempo: 73.48s - 73.81s
+  Transcripción esperada: 'relacionadas'
+  Transcripción IPU: 'Nuestra emisora ha recabado el testimonio de Saito Takashi, un especialista en enfermedades infecciosas que trabaja en las urgencias de un hospital de Nueva Jersey cercano a la ciudad de Nueva York.'
+  Similitud fonética: 0.02
+  Recomendación: Validar manualmente usando Praat
+
+Error 104:
+  Tiempo: 73.81s - 74.13s
+  Transcripción esperada: 'con'
+  Transcripción IPU: 'Saito explica que el personal médico y de enfermería tiene que llevar la misma mascarilla durante todo el día'
+  Similitud fonética: 0.04
+  Recomendación: Validar manualmente usando Praat
+
+Error 105:
+  Tiempo: 74.13s - 74.46s
+  Transcripción esperada: 'Estados'
+  Transcripción IPU: 'debido a la falta de suministros.'
+  Similitud fonética: 0.28
+  Recomendación: Validar manualmente usando Praat
+
+Error 106:
+  Tiempo: 74.46s - 74.79s
+  Transcripción esperada: 'Unidos'
+  Transcripción IPU: 'Además, cuenta que tres cuartos de los pacientes de urgencias tienen la COVID-diecinueve,'
+  Similitud fonética: 0.12
+  Recomendación: Validar manualmente usando Praat
+
+Error 107:
+  Tiempo: 74.79s - 75.11s
+  Transcripción esperada: 'se'
+  Transcripción IPU: 'la neumonía causada por el nuevo tipo de coronavirus,'
+  Similitud fonética: 0.11
+  Recomendación: Validar manualmente usando Praat
+
+Error 108:
+  Tiempo: 75.11s - 75.44s
+  Transcripción esperada: 'deben'
+  Transcripción IPU: 'y que el número aumenta a diario.'
+  Similitud fonética: 0.11
+  Recomendación: Validar manualmente usando Praat
+
+Error 109:
+  Tiempo: 75.44s - 75.77s
+  Transcripción esperada: 'al'
+  Transcripción IPU: 'Por ello, cree que el hospital verá superada su capacidad'
+  Similitud fonética: 0.05
+  Recomendación: Validar manualmente usando Praat
+
+Error 110:
+  Tiempo: 75.77s - 76.09s
+  Transcripción esperada: 'aumento'
+  Transcripción IPU: 'pronto.'
+  Similitud fonética: 0.59
+  Recomendación: Validar manualmente usando Praat
+
+Error 111:
+  Tiempo: 76.09s - 76.42s
+  Transcripción esperada: 'marcado'
+  Transcripción IPU: 'Otro de los problemas a los que se enfrenta el hospital, cuenta el médico japonés,'
+  Similitud fonética: 0.07
+  Recomendación: Validar manualmente usando Praat
+
+Error 112:
+  Tiempo: 76.42s - 76.75s
+  Transcripción esperada: 'de'
+  Transcripción IPU: 'es la falta de camas para los pacientes que deban permanecer ingresados más tiempo'
+  Similitud fonética: 0.06
+  Recomendación: Validar manualmente usando Praat
+
+Error 113:
+  Tiempo: 76.75s - 77.07s
+  Transcripción esperada: 'contagios'
+  Transcripción IPU: 'por síntomas graves.'
+  Similitud fonética: 0.34
+  Recomendación: Validar manualmente usando Praat
+
+Error 114:
+  Tiempo: 77.07s - 77.40s
+  Transcripción esperada: 'allí.'
+  Transcripción IPU: 'Además, el centro médico no tiene respiradores suficientes, entre otros equipos.'
+  Similitud fonética: 0.04
+  Recomendación: Validar manualmente usando Praat
+
+Error 115:
+  Tiempo: 77.40s - 77.79s
+  Transcripción esperada: 'Japó...'
+  Transcripción IPU: 'Hasta el domingo, más de'
+  Similitud fonética: 0.25
+  Recomendación: Validar manualmente usando Praat
+
+Error 116:
+  Tiempo: 77.79s - 78.03s
+  Transcripción esperada: 'Japón'
+  Transcripción IPU: 'cincuenta y nueve mil quinientas personas habían dado positivo por coronavirus en el estado de Nueva York;'
+  Similitud fonética: 0.07
+  Recomendación: Validar manualmente usando Praat
+
+Error 117:
+  Tiempo: 78.03s - 78.26s
+  Transcripción esperada: 'tiene'
+  Transcripción IPU: 'Han fallecido novecientos sesenta y cinco. @'
+  Similitud fonética: 0.13
+  Recomendación: Validar manualmente usando Praat
+
+Error 118:
+  Tiempo: 78.26s - 78.50s
+  Transcripción esperada: 'previsto'
+  Transcripción IPU: 'Las autoridades regionales en el Reino Unido y Francia se hallan haciendo frente a denuncias de violencia doméstica'
+  Similitud fonética: 0.10
+  Recomendación: Validar manualmente usando Praat
+
+Error 119:
+  Tiempo: 78.50s - 78.74s
+  Transcripción esperada: 'hacer'
+  Transcripción IPU: 'probablemente vinculada con el confinamiento a raíz de la pandemia de coronavirus.'
+  Similitud fonética: 0.08
+  Recomendación: Validar manualmente usando Praat
+
+Error 120:
+  Tiempo: 78.74s - 78.98s
+  Transcripción esperada: 'lo'
+  Transcripción IPU: 'El periódico británico The Guardian informó que la policía de Somerset and Avon'
+  Similitud fonética: 0.06
+  Recomendación: Validar manualmente usando Praat
+
+Error 121:
+  Tiempo: 78.98s - 79.22s
+  Transcripción esperada: 'propio'
+  Transcripción IPU: 'había registrado un aumento de veinte coma nueve por ciento de incidentes de violencia doméstica en las últimas dos semanas.'
+  Similitud fonética: 0.09
+  Recomendación: Validar manualmente usando Praat
+
+Error 122:
+  Tiempo: 79.22s - 79.46s
+  Transcripción esperada: 'en'
+  Transcripción IPU: 'El condado de Gran Manchester, en la región central británica, también dio a conocer que había denuncias de violencia relacionadas con el confinamiento.'
+  Similitud fonética: 0.03
+  Recomendación: Validar manualmente usando Praat
+
+Error 123:
+  Tiempo: 79.46s - 79.69s
+  Transcripción esperada: 'el'
+  Transcripción IPU: 'Funcionarios de condado indican que se podría deber al creciente estrés que las familias deben afrontar'
+  Similitud fonética: 0.05
+  Recomendación: Validar manualmente usando Praat
+
+Error 124:
+  Tiempo: 79.69s - 79.93s
+  Transcripción esperada: 'caso'
+  Transcripción IPU: 'por permanecer aisladas en casa o perder ingresos como resultado de las restricciones de desplazamiento.'
+  Similitud fonética: 0.11
+  Recomendación: Validar manualmente usando Praat
+
+Error 125:
+  Tiempo: 79.93s - 80.17s
+  Transcripción esperada: 'de'
+  Transcripción IPU: 'Algunas municipalidades en el Reino Unido instan a los repartidores'
+  Similitud fonética: 0.07
+  Recomendación: Validar manualmente usando Praat
+
+Error 126:
+  Tiempo: 80.17s - 80.41s
+  Transcripción esperada: 'China'
+  Transcripción IPU: 'y a'
+  Similitud fonética: 0.40
+  Recomendación: Validar manualmente usando Praat
+
+Error 127:
+  Tiempo: 80.41s - 80.65s
+  Transcripción esperada: 'y'
+  Transcripción IPU: 'cuidadores a domicilio'
+  Similitud fonética: 0.18
+  Recomendación: Validar manualmente usando Praat
+
+Error 128:
+  Tiempo: 80.65s - 80.89s
+  Transcripción esperada: 'Corea'
+  Transcripción IPU: 'a que observen la situación e informen sobre cualquier señal de abuso.'
+  Similitud fonética: 0.12
+  Recomendación: Validar manualmente usando Praat
+
+Error 129:
+  Tiempo: 80.89s - 81.12s
+  Transcripción esperada: 'del'
+  Transcripción IPU: 'En Francia, el ministro del Interior, Christophe'
+  Similitud fonética: 0.15
+  Recomendación: Validar manualmente usando Praat
+
+Error 130:
+  Tiempo: 81.12s - 81.36s
+  Transcripción esperada: 'Sur;'
+  Transcripción IPU: 'Castaner,'
+  Similitud fonética: 0.15
+  Recomendación: Validar manualmente usando Praat
+
+Error 131:
+  Tiempo: 81.36s - 81.63s
+  Transcripción esperada: 'De'
+  Transcripción IPU: 'dijo en la emisora pública France two'
+  Similitud fonética: 0.12
+  Recomendación: Validar manualmente usando Praat
+
+Error 132:
+  Tiempo: 81.63s - 81.91s
+  Transcripción esperada: 'algunos'
+  Transcripción IPU: 'que el número de denuncias de casos de violencia doméstica por parte de conyuges'
+  Similitud fonética: 0.15
+  Recomendación: Validar manualmente usando Praat
+
+Error 133:
+  Tiempo: 81.91s - 82.18s
+  Transcripción esperada: 'países'
+  Transcripción IPU: 'había aumentado un treinta y seis por ciento en una semana en París y sus alrededores. @'
+  Similitud fonética: 0.10
+  Recomendación: Validar manualmente usando Praat
+
+Error 134:
+  Tiempo: 82.18s - 82.45s
+  Transcripción esperada: 'de'
+  Transcripción IPU: 'El compositor y director de orquesta polaco Krzysztof Penderecki, un célebre exponente de la música clásica contemporánea,'
+  Similitud fonética: 0.04
+  Recomendación: Validar manualmente usando Praat
+
+Error 135:
+  Tiempo: 82.45s - 82.72s
+  Transcripción esperada: 'Europa,'
+  Transcripción IPU: 'falleció el veinte y nueve de marzo a los ochenta y seis años.'
+  Similitud fonética: 0.09
+  Recomendación: Validar manualmente usando Praat
+
+Error 136:
+  Tiempo: 82.72s - 82.99s
+  Transcripción esperada: 'entre'
+  Transcripción IPU: 'Nacido en Debica, su obra «Treno a las víctimas de Hiroshima»,'
+  Similitud fonética: 0.13
+  Recomendación: Validar manualmente usando Praat
+
+Error 137:
+  Tiempo: 82.99s - 83.27s
+  Transcripción esperada: 'ellos'
+  Transcripción IPU: 'para orquesta de cuerda,'
+  Similitud fonética: 0.18
+  Recomendación: Validar manualmente usando Praat
+
+Error 138:
+  Tiempo: 83.27s - 83.54s
+  Transcripción esperada: 'el'
+  Transcripción IPU: 'obtuvo un gran reconocimiento por parte del público'
+  Similitud fonética: 0.09
+  Recomendación: Validar manualmente usando Praat
+
+Error 139:
+  Tiempo: 83.54s - 83.81s
+  Transcripción esperada: 'Reino'
+  Transcripción IPU: 'tras su estreno en mil novecientos sesenta.'
+  Similitud fonética: 0.22
+  Recomendación: Validar manualmente usando Praat
+
+Error 140:
+  Tiempo: 83.81s - 84.08s
+  Transcripción esperada: 'Unido,'
+  Transcripción IPU: 'Su música sirvió de banda sonora en películas de terror estadounidenses como'
+  Similitud fonética: 0.15
+  Recomendación: Validar manualmente usando Praat
+
+Error 141:
+  Tiempo: 84.08s - 84.41s
+  Transcripción esperada: 'y'
+  Transcripción IPU: '«El exorcista»'
+  Similitud fonética: 0.21
+  Recomendación: Validar manualmente usando Praat
+
+Error 142:
+  Tiempo: 84.41s - 84.73s
+  Transcripción esperada: 'de'
+  Transcripción IPU: 'y «El resplandor». @'
+  Similitud fonética: 0.15
+  Recomendación: Validar manualmente usando Praat
+
+Error 143:
+  Tiempo: 84.73s - 85.05s
+  Transcripción esperada: 'algunas'
+  Transcripción IPU: 'Más de doscientas mil personas firmaron una petición para una nueva investigación'
+  Similitud fonética: 0.11
+  Recomendación: Validar manualmente usando Praat
+
+Error 144:
+  Tiempo: 85.05s - 85.38s
+  Transcripción esperada: 'zonas'
+  Transcripción IPU: 'relacionada con la opaca venta de terrenos públicos'
+  Similitud fonética: 0.14
+  Recomendación: Validar manualmente usando Praat
+
+Error 145:
+  Tiempo: 85.38s - 85.70s
+  Transcripción esperada: 'del'
+  Transcripción IPU: 'que desató acusaciones de favoritismo contra la administración del primer ministro japonés Abe Shinzo.'
+  Similitud fonética: 0.06
+  Recomendación: Validar manualmente usando Praat
+
+Error 146:
+  Tiempo: 85.70s - 86.02s
+  Transcripción esperada: 'Sudeste'
+  Transcripción IPU: 'La petición en el sitio web Change point org,'
+  Similitud fonética: 0.09
+  Recomendación: Validar manualmente usando Praat
+
+Error 147:
+  Tiempo: 86.02s - 86.35s
+  Transcripción esperada: 'Asiático,'
+  Transcripción IPU: 'que inició el viernes la viuda del exfuncionario del Ministerio de Hacienda Akagi Toshio,'
+  Similitud fonética: 0.14
+  Recomendación: Validar manualmente usando Praat
+
+Error 148:
+  Tiempo: 86.35s - 86.67s
+  Transcripción esperada: 'como,'
+  Transcripción IPU: 'tenía el apoyo de doscientas mil personas poco después de las cinco de la tarde del lunes.'
+  Similitud fonética: 0.09
+  Recomendación: Validar manualmente usando Praat
+
+Error 149:
+  Tiempo: 86.67s - 86.99s
+  Transcripción esperada: 'por'
+  Transcripción IPU: 'Akagi se suicidó'
+  Similitud fonética: 0.14
+  Recomendación: Validar manualmente usando Praat
+
+Error 150:
+  Tiempo: 86.99s - 87.32s
+  Transcripción esperada: 'ejemplo,'
+  Transcripción IPU: 'hace dos años'
+  Similitud fonética: 0.34
+  Recomendación: Validar manualmente usando Praat
+
+Error 151:
+  Tiempo: 87.32s - 87.64s
+  Transcripción esperada: 'Tailandia.'
+  Transcripción IPU: 'después de que se viera implicado en la falsificación de documentos ministeriales sobre la venta del terreno a la empresa Moritomo Gakuen, que gestiona escuelas.'
+  Similitud fonética: 0.02
+  Recomendación: Validar manualmente usando Praat
+
+Error 152:
+  Tiempo: 87.64s - 87.95s
+  Transcripción esperada: 'Con'
+  Transcripción IPU: 'La transacción desató la crítica porque la esposa de Abe, Akie,'
+  Similitud fonética: 0.10
+  Recomendación: Validar manualmente usando Praat
+
+Error 153:
+  Tiempo: 87.95s - 88.27s
+  Transcripción esperada: 'estas'
+  Transcripción IPU: 'fue nombrada directora honorífica de una escuela primaria que se iba a construir en el predio.'
+  Similitud fonética: 0.08
+  Recomendación: Validar manualmente usando Praat
+
+Error 154:
+  Tiempo: 88.27s - 88.59s
+  Transcripción esperada: 'medidas,'
+  Transcripción IPU: 'En relación con la falsificación,'
+  Similitud fonética: 0.12
+  Recomendación: Validar manualmente usando Praat
+
+Error 155:
+  Tiempo: 88.59s - 88.90s
+  Transcripción esperada: 'se'
+  Transcripción IPU: 'la fiscalía investigó a funcionarios gubernamentales, pero no procesó a ninguno.'
+  Similitud fonética: 0.08
+  Recomendación: Validar manualmente usando Praat
+
+Error 156:
+  Tiempo: 88.90s - 89.22s
+  Transcripción esperada: 'prohíbe'
+  Transcripción IPU: 'Este mes, la viuda de Akagi publicó la nota de suicidio de su marido,'
+  Similitud fonética: 0.06
+  Recomendación: Validar manualmente usando Praat
+
+Error 157:
+  Tiempo: 89.22s - 89.53s
+  Transcripción esperada: 'el'
+  Transcripción IPU: 'así como papeles en los que expresaba una profunda ansiedad'
+  Similitud fonética: 0.08
+  Recomendación: Validar manualmente usando Praat
+
+Error 158:
+  Tiempo: 89.53s - 89.85s
+  Transcripción esperada: 'ingreso'
+  Transcripción IPU: 'por haber sido obligado a alterar documentos públicos.'
+  Similitud fonética: 0.10
+  Recomendación: Validar manualmente usando Praat
+
+Error 159:
+  Tiempo: 89.85s - 90.16s
+  Transcripción esperada: 'a'
+  Transcripción IPU: 'A través de su abogado, la viuda dijo a nuestra emisora que agradecía el apoyo de tanta gente'
+  Similitud fonética: 0.05
+  Recomendación: Validar manualmente usando Praat
+
+Error 160:
+  Tiempo: 90.16s - 90.48s
+  Transcripción esperada: 'las'
+  Transcripción IPU: 'y que esperaba que el mensaje llegue tanto al primer ministro Abe como al titular de hacienda,'
+  Similitud fonética: 0.07
+  Recomendación: Validar manualmente usando Praat
+
+Error 161:
+  Tiempo: 90.48s - 90.79s
+  Transcripción esperada: 'personas'
+  Transcripción IPU: 'Aso Taro,'
+  Similitud fonética: 0.45
+  Recomendación: Validar manualmente usando Praat
+
+Error 162:
+  Tiempo: 90.79s - 91.11s
+  Transcripción esperada: 'con'
+  Transcripción IPU: 'y que se reabran las investigaciones.'
+  Similitud fonética: 0.12
+  Recomendación: Validar manualmente usando Praat
+
+Error 163:
+  Tiempo: 91.11s - 91.42s
+  Transcripción esperada: 'pasaporte'
+  Transcripción IPU: 'También dijo que iba a arriesgar su vida con el fin de que se haga realidad una nueva investigación,'
+  Similitud fonética: 0.04
+  Recomendación: Validar manualmente usando Praat
+
+Error 164:
+  Tiempo: 91.42s - 91.74s
+  Transcripción esperada: 'de'
+  Transcripción IPU: 'ya que su marido había sacrificado la suya para dejarle esas notas tan importantes. @'
+  Similitud fonética: 0.05
+  Recomendación: Validar manualmente usando Praat
+
+Error 165:
+  Tiempo: 91.74s - 92.05s
+  Transcripción esperada: 'un'
+  Transcripción IPU: 'Antes de terminar le recordamos nuestra primera noticia de hoy.'
+  Similitud fonética: 0.05
+  Recomendación: Validar manualmente usando Praat
+
+Error 166:
+  Tiempo: 92.05s - 92.37s
+  Transcripción esperada: 'tercio,'
+  Transcripción IPU: 'Japón tiene previsto ampliar la prohibición de entrada al país a viajeros de otras nacionalidades procedentes de Estados Unidos, China, Corea del Sur,'
+  Similitud fonética: 0.04
+  Recomendación: Validar manualmente usando Praat
+
+Error 167:
+  Tiempo: 92.37s - 92.69s
+  Transcripción esperada: 'aproximadamente,'
+  Transcripción IPU: 'la mayoría de naciones europeas'
+  Similitud fonética: 0.23
+  Recomendación: Validar manualmente usando Praat
+
+Error 168:
+  Tiempo: 92.69s - 93.00s
+  Transcripción esperada: 'de'
+  Transcripción IPU: 'y algunos lugares del Sudeste Asiático,'
+  Similitud fonética: 0.11
+  Recomendación: Validar manualmente usando Praat
+
+Error 169:
+  Tiempo: 93.00s - 93.32s
+  Transcripción esperada: 'los'
+  Transcripción IPU: 'con la propagación de la pandemia de coronavirus como trasfondo.'
+  Similitud fonética: 0.07
+  Recomendación: Validar manualmente usando Praat
+
+Error 170:
+  Tiempo: 93.32s - 93.63s
+  Transcripción esperada: 'países'
+  Transcripción IPU: 'Además, el Gobierno japonés ha decidido aumentar a tres el nivel de alerta de viajes a todo el territorio estadounidense;'
+  Similitud fonética: 0.09
+  Recomendación: Validar manualmente usando Praat
+
+Error 171:
+  Tiempo: 93.63s - 93.95s
+  Transcripción esperada: 'y'
+  Transcripción IPU: 'En ex, en este contexto, recomienda cancelar todos los viajes a Estados Unidos.'
+  Similitud fonética: 0.06
+  Recomendación: Validar manualmente usando Praat
+
+Error 172:
+  Tiempo: 93.95s - 94.26s
+  Transcripción esperada: 'territorios'
+  Transcripción IPU: 'Asimismo, se prohíbe la entrada a Japón'
+  Similitud fonética: 0.16
+  Recomendación: Validar manualmente usando Praat
+
+Error 173:
+  Tiempo: 94.26s - 94.58s
+  Transcripción esperada: 'del'
+  Transcripción IPU: 'a todas las personas de nacionalidad extranjera que hayan estado en ese país en las últimas dos semanas.'
+  Similitud fonética: 0.05
+  Recomendación: Validar manualmente usando Praat
+
+Error 174:
+  Tiempo: 94.58s - 94.89s
+  Transcripción esperada: 'mundo,'
+  Transcripción IPU: 'Las medidas relacionadas con Estados Unidos se deben al aumento marcado de contagios allí.'
+  Similitud fonética: 0.10
+  Recomendación: Validar manualmente usando Praat
+
+Error 175:
+  Tiempo: 94.89s - 95.20s
+  Transcripción esperada: 'salvo'
+  Transcripción IPU: 'Japón tiene previsto hacer lo propio en el caso de China y Corea del Sur;'
+  Similitud fonética: 0.04
+  Recomendación: Validar manualmente usando Praat
+
+Error 176:
+  Tiempo: 95.20s - 95.52s
+  Transcripción esperada: 'que'
+  Transcripción IPU: 'De algunos países de Europa, entre ellos el Reino Unido,'
+  Similitud fonética: 0.05
+  Recomendación: Validar manualmente usando Praat
+
+Error 177:
+  Tiempo: 95.52s - 95.83s
+  Transcripción esperada: 'tengan'
+  Transcripción IPU: 'y de algunas zonas del Sudeste Asiático, como, por ejemplo,'
+  Similitud fonética: 0.07
+  Recomendación: Validar manualmente usando Praat
+
+Error 178:
+  Tiempo: 95.83s - 96.14s
+  Transcripción esperada: 'un'
+  Transcripción IPU: 'Tailandia.'
+  Similitud fonética: 0.31
+  Recomendación: Validar manualmente usando Praat
+
+Error 179:
+  Tiempo: 96.14s - 96.45s
+  Transcripción esperada: 'motivo'
+  Transcripción IPU: 'Con estas medidas, se prohíbe el ingreso a las personas con pasaporte de un tercio, aproximadamente, de los países y territorios del mundo,'
+  Similitud fonética: 0.09
+  Recomendación: Validar manualmente usando Praat
+
+Error 180:
+  Tiempo: 96.45s - 96.76s
+  Transcripción esperada: 'especial'
+  Transcripción IPU: 'salvo que tengan'
+  Similitud fonética: 0.29
+  Recomendación: Validar manualmente usando Praat
+
+Error 181:
+  Tiempo: 96.76s - 97.07s
+  Transcripción esperada: 'para'
+  Transcripción IPU: 'un motivo especial'
+  Similitud fonética: 0.22
+  Recomendación: Validar manualmente usando Praat
+
+Error 182:
+  Tiempo: 97.07s - 97.38s
+  Transcripción esperada: 'entrar.'
+  Transcripción IPU: 'para entrar. @'
+  Similitud fonética: 0.56
+  Recomendación: Validar manualmente usando Praat
+
+Error 183:
+  Tiempo: 97.38s - 97.68s
+  Transcripción esperada: 'El'
+  Transcripción IPU: 'conclusión'
+  Similitud fonética: 0.12
+  Recomendación: Validar manualmente usando Praat
+
+=== INSTRUCCIONES DE VALIDACIÓN ===
+1. Abrir el archivo de audio en Praat
+2. Cargar el archivo TextGrid con errores
+3. Escuchar cada segmento marcado como error
+4. Confirmar o corregir las discrepancias detectadas
+5. Documentar hallazgos en este reporte

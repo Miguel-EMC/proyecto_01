@@ -1,0 +1,750 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0.0
+xmax = 97.6750687499999
+tiers? <exists>
+size = 1
+item []:
+	item [1]:
+		class = "IntervalTier"
+		name = "TranscErrors"
+		xmin = 0
+		xmax = 97.6750687499999
+		intervals: size = 184
+			intervals [1]:
+				xmin = 0
+				xmax = 40.585814
+				text = ""
+			intervals [2]:
+				xmin = 40.585814
+				xmax = 40.952091349999996
+				text = "Expected: Japón | Found: Japón tiene previsto ampliar la prohibición de entrada al país a viajeros de otras nacionalidades procedentes de Estados Unidos, China, | Similarity: 0.08"
+			intervals [3]:
+				xmin = 40.952091349999996
+				xmax = 41.31836869999999
+				text = "Expected: tiene | Found: Corea del Sur, | Similarity: 0.09"
+			intervals [4]:
+				xmin = 41.31836869999999
+				xmax = 41.68464604999999
+				text = "Expected: previsto | Found: la mayoría de naciones europeas y algunos lugares del Sudeste Asiático, | Similarity: 0.15"
+			intervals [5]:
+				xmin = 41.68464604999999
+				xmax = 42.05092339999999
+				text = "Expected: ampliar | Found: con la propagación de la pandemia de coronavirus como trasfondo. | Similarity: 0.12"
+			intervals [6]:
+				xmin = 42.05092339999999
+				xmax = 42.417200749999985
+				text = "Expected: la | Found: Además, el Gobierno japonés ha decidido aumentar a tres | Similarity: 0.08"
+			intervals [7]:
+				xmin = 42.417200749999985
+				xmax = 42.78347809999998
+				text = "Expected: prohibición | Found: el nivel de alerta de viajes a todo el territorio estadounidense; | Similarity: 0.17"
+			intervals [8]:
+				xmin = 42.78347809999998
+				xmax = 43.14975544999998
+				text = "Expected: de | Found: En este contexto, recomienda cancelar todos los viajes a Estados Unidos. | Similarity: 0.06"
+			intervals [9]:
+				xmin = 43.14975544999998
+				xmax = 43.51603279999998
+				text = "Expected: entrada | Found: Asimismo, se prohíbe la entrada a Japón | Similarity: 0.31"
+			intervals [10]:
+				xmin = 43.51603279999998
+				xmax = 43.882310149999974
+				text = "Expected: al | Found: a todas las personas de nacionalidad extranjera que hayan estado en ese país | Similarity: 0.06"
+			intervals [11]:
+				xmin = 43.882310149999974
+				xmax = 44.24858749999997
+				text = "Expected: país | Found: en las últimas dos semanas. | Similarity: 0.22"
+			intervals [12]:
+				xmin = 44.24858749999997
+				xmax = 44.61486484999997
+				text = "Expected: a | Found: Las medidas relacionadas con Estados Unidos se deben al aumento marcado de contagios allí. | Similarity: 0.05"
+			intervals [13]:
+				xmin = 44.61486484999997
+				xmax = 44.981142199999965
+				text = "Expected: viajeros | Found: Japó... | Similarity: 0.45"
+			intervals [14]:
+				xmin = 44.981142199999965
+				xmax = 45.34741954999996
+				text = "Expected: de | Found: Japón tiene previsto hacer lo propio en el caso de China y Corea del Sur; | Similarity: 0.04"
+			intervals [15]:
+				xmin = 45.34741954999996
+				xmax = 45.71369689999996
+				text = "Expected: otras | Found: De algunos países de Europa, entre ellos el Reino Unido, | Similarity: 0.12"
+			intervals [16]:
+				xmin = 45.71369689999996
+				xmax = 46.07997424999996
+				text = "Expected: nacionalidades | Found: y de algunas zonas del Sudeste Asiático, como, por ejemplo, Tailandia. | Similarity: 0.19"
+			intervals [17]:
+				xmin = 46.07997424999996
+				xmax = 46.446251599999954
+				text = "Expected: procedentes | Found: Con estas medidas, se prohíbe el ingreso a las personas con pasaporte de un tercio, aproximadamente, de los países y territorios del mundo, | Similarity: 0.11"
+			intervals [18]:
+				xmin = 46.446251599999954
+				xmax = 46.81252894999995
+				text = "Expected: de | Found: salvo que tengan un motivo especial para entrar. | Similarity: 0.07"
+			intervals [19]:
+				xmin = 46.81252894999995
+				xmax = 47.17880629999995
+				text = "Expected: Estados | Found: El resto de países y territorios pasarán al nivel dos de alerta; | Similarity: 0.17"
+			intervals [20]:
+				xmin = 47.17880629999995
+				xmax = 47.545083649999945
+				text = "Expected: Unidos, | Found: En ese caso, se insta a las personas de nacionalidad japonesa a evitar viajar | Similarity: 0.13"
+			intervals [21]:
+				xmin = 47.545083649999945
+				xmax = 47.91136099999994
+				text = "Expected: China, | Found: a esos lugares, | Similarity: 0.16"
+			intervals [22]:
+				xmin = 47.91136099999994
+				xmax = 48.15187833333328
+				text = "Expected: Corea | Found: a menos que sea estrictamente necesario. @ | Similarity: 0.13"
+			intervals [23]:
+				xmin = 48.15187833333328
+				xmax = 48.392395666666616
+				text = "Expected: del | Found: El Gobierno de Japón ha dado a conocer que cerca de la mitad de los | Similarity: 0.09"
+			intervals [24]:
+				xmin = 48.392395666666616
+				xmax = 48.63291299999995
+				text = "Expected: Sur, | Found: casi doscientos sesenta japoneses atrapados en Perú | Similarity: 0.09"
+			intervals [25]:
+				xmin = 48.63291299999995
+				xmax = 48.963420909090864
+				text = "Expected: la | Found: por la pandemia de coronavirus | Similarity: 0.15"
+			intervals [26]:
+				xmin = 48.963420909090864
+				xmax = 49.293928818181776
+				text = "Expected: mayoría | Found: ha salido del país. | Similarity: 0.12"
+			intervals [27]:
+				xmin = 49.293928818181776
+				xmax = 49.62443672727269
+				text = "Expected: de | Found: Así lo ha anunciado hoy lunes ante la prensa el secretario de en jefe del Gabinete japonés, Suga Yoshihide. | Similarity: 0.04"
+			intervals [28]:
+				xmin = 49.62443672727269
+				xmax = 49.9549446363636
+				text = "Expected: naciones | Found: El sábado, veintinueve turistas japoneses pudieron partir de Perú a bordo de un vuelo fletado por el Gobierno de Taiwán. | Similarity: 0.05"
+			intervals [29]:
+				xmin = 49.9549446363636
+				xmax = 50.28545254545451
+				text = "Expected: europeas | Found: A este respecto, Suga ha explicado que todos ellos habían llegado a Miami, EE. UU., | Similarity: 0.12"
+			intervals [30]:
+				xmin = 50.28545254545451
+				xmax = 50.61596045454542
+				text = "Expected: y | Found: y ha manifestado su agradecimiento a la Administración taiwanesa por haberlo hecho posible. | Similarity: 0.07"
+			intervals [31]:
+				xmin = 50.61596045454542
+				xmax = 50.946468363636335
+				text = "Expected: algunos | Found: Según Suga, el domingo, otros ciento cuatro japoneses abandonaron Perú con destino a México | Similarity: 0.11"
+			intervals [32]:
+				xmin = 50.946468363636335
+				xmax = 51.27697627272725
+				text = "Expected: lugares | Found: en un vuelo fletado por una agencia de viajes. | Similarity: 0.17"
+			intervals [33]:
+				xmin = 51.27697627272725
+				xmax = 51.60748418181816
+				text = "Expected: del | Found: El quince de marzo, el Gobierno peruano declaró el estado de emergencia y suspendió todos los vuelos internacionales. @ | Similarity: 0.04"
+			intervals [34]:
+				xmin = 51.60748418181816
+				xmax = 51.93799209090907
+				text = "Expected: Sudeste | Found: El Partido Liberal Demócrata, el PLD, | Similarity: 0.17"
+			intervals [35]:
+				xmin = 51.93799209090907
+				xmax = 52.26849999999998
+				text = "Expected: Asiático, | Found: ha elaborado un borrador con propuestas sobre un paquete de estímulo para hacer frente a la repercusión económica de la pandemia de coronavirus. | Similarity: 0.08"
+			intervals [36]:
+				xmin = 52.26849999999998
+				xmax = 52.58590109999998
+				text = "Expected: con | Found: El principal miembro de la coalición de Gobierno en Japón | Similarity: 0.11"
+			intervals [37]:
+				xmin = 52.58590109999998
+				xmax = 52.90330219999998
+				text = "Expected: la | Found: insta a que se aprueben medidas de mayor envergadura | Similarity: 0.03"
+			intervals [38]:
+				xmin = 52.90330219999998
+				xmax = 53.220703299999975
+				text = "Expected: propagación | Found: que las aplicadas durante la crisis económica mundial | Similarity: 0.17"
+			intervals [39]:
+				xmin = 53.220703299999975
+				xmax = 53.53810439999997
+				text = "Expected: de | Found: de dos mil ocho. | Similarity: 0.27"
+			intervals [40]:
+				xmin = 53.53810439999997
+				xmax = 53.85550549999997
+				text = "Expected: la | Found: Concretamente, el PLD propone unos ciento ochenta y seis mil millones de dólares de gasto fiscal | Similarity: 0.05"
+			intervals [41]:
+				xmin = 53.85550549999997
+				xmax = 54.17290659999997
+				text = "Expected: pandemia | Found: y cerca de quinientos sesenta mil millones de dólares para las empresas. | Similarity: 0.13"
+			intervals [42]:
+				xmin = 54.17290659999997
+				xmax = 54.49030769999997
+				text = "Expected: de | Found: En dos mil ocho, el paquete económico fue de más de ciento cuarenta mil millones de dólares destinados al gasto fiscal | Similarity: 0.04"
+			intervals [43]:
+				xmin = 54.49030769999997
+				xmax = 54.807708799999965
+				text = "Expected: coronavirus | Found: y de más de quinientos veintitrés mil millones de dólares para las empresas. | Similarity: 0.15"
+			intervals [44]:
+				xmin = 54.807708799999965
+				xmax = 55.12510989999996
+				text = "Expected: como | Found: Además, se sugiere que el Gobierno conceda unos nueve mil trecientos millones de dólares en subvenciones | Similarity: 0.09"
+			intervals [45]:
+				xmin = 55.12510989999996
+				xmax = 55.44251099999996
+				text = "Expected: trasfondo. | Found: a las pymes y los autónomos, | Similarity: 0.29"
+			intervals [46]:
+				xmin = 55.44251099999996
+				xmax = 55.76930666666663
+				text = "Expected: Además, | Found: y que no sea necesario reembolsar estos subsidios. | Similarity: 0.13"
+			intervals [47]:
+				xmin = 55.76930666666663
+				xmax = 56.0961023333333
+				text = "Expected: el | Found: Por otra parte, se insta a la Administración a incrementar la cuantía de los fondos de reserva, | Similarity: 0.05"
+			intervals [48]:
+				xmin = 56.0961023333333
+				xmax = 56.42289799999997
+				text = "Expected: Gobierno | Found: que en la actualidad ascienden a unos cuatro mil seiscientos millones de dólares, | Similarity: 0.15"
+			intervals [49]:
+				xmin = 56.42289799999997
+				xmax = 56.74969366666664
+				text = "Expected: japonés | Found: para el año fiscal que dará comienzo en abril, | Similarity: 0.11"
+			intervals [50]:
+				xmin = 56.74969366666664
+				xmax = 57.076489333333306
+				text = "Expected: ha | Found: y que se destinen a la lucha contra el coronavirus. | Similarity: 0.06"
+			intervals [51]:
+				xmin = 57.076489333333306
+				xmax = 57.403284999999975
+				text = "Expected: decidido | Found: Otra opción sería crear un fondo de reserva exclusivo para estas medidas. | Similarity: 0.14"
+			intervals [52]:
+				xmin = 57.403284999999975
+				xmax = 57.730080666666645
+				text = "Expected: aumentar | Found: Otra de las propuestas del PLD | Similarity: 0.16"
+			intervals [53]:
+				xmin = 57.730080666666645
+				xmax = 58.056876333333314
+				text = "Expected: a | Found: es dar efectivo a las familias que tengan dificultades para llegar a final de mes por disponer de menos ingresos debido al brote. | Similarity: 0.04"
+			intervals [54]:
+				xmin = 58.056876333333314
+				xmax = 58.38367199999998
+				text = "Expected: tres | Found: No se menciona una cantidad específica, | Similarity: 0.08"
+			intervals [55]:
+				xmin = 58.38367199999998
+				xmax = 58.668149545454526
+				text = "Expected: el | Found: pero se señala que debe adaptarse al número de miembros por hogar. | Similarity: 0.07"
+			intervals [56]:
+				xmin = 58.668149545454526
+				xmax = 58.95262709090907
+				text = "Expected: nivel | Found: El Gobierno aprobará sus medidas económicas la próxima semana, | Similarity: 0.12"
+			intervals [57]:
+				xmin = 58.95262709090907
+				xmax = 59.23710463636361
+				text = "Expected: de | Found: como fecha más temprana. @ | Similarity: 0.11"
+			intervals [58]:
+				xmin = 59.23710463636361
+				xmax = 59.521582181818154
+				text = "Expected: alerta | Found: La gobernadora de Tokio, Koike Yuriko, ha declarado que intentará identificar la ruta de contagio de los casos de coronavirus detectados en la capital | Similarity: 0.06"
+			intervals [59]:
+				xmin = 59.521582181818154
+				xmax = 59.8060597272727
+				text = "Expected: de | Found: y colaborará con expertos para trazar medidas. | Similarity: 0.06"
+			intervals [60]:
+				xmin = 59.8060597272727
+				xmax = 60.09053727272724
+				text = "Expected: viajes | Found: Koike ha dicho hoy lunes ante la prensa que muchos tokiotas | Similarity: 0.12"
+			intervals [61]:
+				xmin = 60.09053727272724
+				xmax = 60.37501481818178
+				text = "Expected: a | Found: le habían hecho caso y se habían quedado en casa el fin de semana. | Similarity: 0.04"
+			intervals [62]:
+				xmin = 60.37501481818178
+				xmax = 60.659492363636325
+				text = "Expected: todo | Found: Por ello, desea que la gente siga colaborando e insta a no salir incluso entre semana, | Similarity: 0.10"
+			intervals [63]:
+				xmin = 60.659492363636325
+				xmax = 60.94396990909087
+				text = "Expected: el | Found: salvo que sea estrictamente necesario. | Similarity: 0.08"
+			intervals [64]:
+				xmin = 60.94396990909087
+				xmax = 61.22844745454541
+				text = "Expected: territorio | Found: Además, la gobernadora ha hablado sobre los sesenta y ocho casos nuevos que se detectaron el domingo, | Similarity: 0.12"
+			intervals [65]:
+				xmin = 61.22844745454541
+				xmax = 61.51292499999995
+				text = "Expected: estadounidense; | Found: la mayor cifra diaria para Tokio hasta la fecha. | Similarity: 0.11"
+			intervals [66]:
+				xmin = 61.51292499999995
+				xmax = 61.855458545454496
+				text = "Expected: En | Found: A este respecto, ha comentado que se cree | Similarity: 0.11"
+			intervals [67]:
+				xmin = 61.855458545454496
+				xmax = 62.19799209090904
+				text = "Expected: este | Found: que muchos de los contagios ocurrieron en hospitales, | Similarity: 0.12"
+			intervals [68]:
+				xmin = 62.19799209090904
+				xmax = 62.54052563636358
+				text = "Expected: contexto, | Found: y que es necesario investigar a conciencia la ruta de infección de aquellos casos en que se desconozca. | Similarity: 0.13"
+			intervals [69]:
+				xmin = 62.54052563636358
+				xmax = 62.883059181818126
+				text = "Expected: recomienda | Found: Koike ha vuelto a pedirle a la ciudadanía que se abstenga de salir de casa por la noche. | Similarity: 0.11"
+			intervals [70]:
+				xmin = 62.883059181818126
+				xmax = 63.22559272727267
+				text = "Expected: cancelar | Found: Por otra parte, ha anunciado que se reunirá, hoy mismo, con una comisión del Ministerio de Salud | Similarity: 0.10"
+			intervals [71]:
+				xmin = 63.22559272727267
+				xmax = 63.56812627272721
+				text = "Expected: todos | Found: encargado de los focos infecciosos. | Similarity: 0.15"
+			intervals [72]:
+				xmin = 63.56812627272721
+				xmax = 63.910659818181756
+				text = "Expected: los | Found: Su intención, ha dicho, es cooperar | Similarity: 0.08"
+			intervals [73]:
+				xmin = 63.910659818181756
+				xmax = 64.2531933636363
+				text = "Expected: viajes | Found: con el para estudiar la situación actual de la capital y ver qué medidas se toman. @ | Similarity: 0.08"
+			intervals [74]:
+				xmin = 64.2531933636363
+				xmax = 64.59572690909084
+				text = "Expected: a | Found: Los fabricantes japoneses de automóviles van a suspender de forma parcial la producción en territorio nipón | Similarity: 0.04"
+			intervals [75]:
+				xmin = 64.59572690909084
+				xmax = 64.93826045454539
+				text = "Expected: Estados | Found: debido al descenso en la demanda de vehículos nuevos y a la dificultad, cada vez mayor, | Similarity: 0.15"
+			intervals [76]:
+				xmin = 64.93826045454539
+				xmax = 65.28079399999993
+				text = "Expected: Unidos. | Found: de conseguir piezas procedentes de otros países | Similarity: 0.19"
+			intervals [77]:
+				xmin = 65.28079399999993
+				xmax = 65.59131214285708
+				text = "Expected: Asimismo, | Found: por la pandemia. | Similarity: 0.14"
+			intervals [78]:
+				xmin = 65.59131214285708
+				xmax = 65.90183028571423
+				text = "Expected: se | Found: Mazda y Mitsubishi decidieron suspender la producción desde finales de la semana pasada hasta el próximo mes. | Similarity: 0.06"
+			intervals [79]:
+				xmin = 65.90183028571423
+				xmax = 66.21234842857137
+				text = "Expected: prohíbe | Found: Toyota, Honda, Nissan y Suzuki | Similarity: 0.22"
+			intervals [80]:
+				xmin = 66.21234842857137
+				xmax = 66.52286657142852
+				text = "Expected: la | Found: tienen previsto hacer lo propio en abril. | Similarity: 0.08"
+			intervals [81]:
+				xmin = 66.52286657142852
+				xmax = 66.83338471428567
+				text = "Expected: entrada | Found: En un principio, los fabricantes japoneses de vehículos notaron la repercusión del brote de coronavirus principalmente en China, | Similarity: 0.06"
+			intervals [82]:
+				xmin = 66.83338471428567
+				xmax = 67.14390285714282
+				text = "Expected: a | Found: donde cerraron fábricas. | Similarity: 0.15"
+			intervals [83]:
+				xmin = 67.14390285714282
+				xmax = 67.45442099999997
+				text = "Expected: Japón | Found: Consecuentemente, hubo problemas en el suministro de piezas a Japón. | Similarity: 0.16"
+			intervals [84]:
+				xmin = 67.45442099999997
+				xmax = 67.75540276923074
+				text = "Expected: a | Found: Aunque esas fábricas han reanudado la actividad, la demanda local de vehículos nuevos ha disminuido drásticamente: | Similarity: 0.03"
+			intervals [85]:
+				xmin = 67.75540276923074
+				xmax = 68.05638453846151
+				text = "Expected: todas | Found: En febrero, las ventas fueron en torno a un ochenta por ciento menores | Similarity: 0.11"
+			intervals [86]:
+				xmin = 68.05638453846151
+				xmax = 68.35736630769229
+				text = "Expected: las | Found: que en el mismo período de dos mil diecinueve. | Similarity: 0.13"
+			intervals [87]:
+				xmin = 68.35736630769229
+				xmax = 68.65834807692306
+				text = "Expected: personas | Found: Se cree que esta situación | Similarity: 0.17"
+			intervals [88]:
+				xmin = 68.65834807692306
+				xmax = 68.95932984615384
+				text = "Expected: de | Found: se dará durante un tiempo. | Similarity: 0.15"
+			intervals [89]:
+				xmin = 68.95932984615384
+				xmax = 69.26031161538461
+				text = "Expected: nacionalidad | Found: Los fabricantes japoneses de automóviles también han cerrado fábricas en Europa y Estados Unidos, | Similarity: 0.10"
+			intervals [90]:
+				xmin = 69.26031161538461
+				xmax = 69.56129338461538
+				text = "Expected: extranjera | Found: entre otros lugares. | Similarity: 0.32"
+			intervals [91]:
+				xmin = 69.56129338461538
+				xmax = 69.86227515384616
+				text = "Expected: que | Found: Según varios analistas, las ventas se reducirán drásticamente, lo cual afectará, | Similarity: 0.04"
+			intervals [92]:
+				xmin = 69.86227515384616
+				xmax = 70.16325692307693
+				text = "Expected: hayan | Found: sin duda, | Similarity: 0.33"
+			intervals [93]:
+				xmin = 70.16325692307693
+				xmax = 70.4642386923077
+				text = "Expected: estado | Found: a los beneficios de las empresas. @ | Similarity: 0.12"
+			intervals [94]:
+				xmin = 70.4642386923077
+				xmax = 70.76522046153848
+				text = "Expected: en | Found: El veterano comediante japonés Shimura Ken falleció el domingo por la noche en un hospital de Tokio. | Similarity: 0.05"
+			intervals [95]:
+				xmin = 70.76522046153848
+				xmax = 71.06620223076925
+				text = "Expected: ese | Found: Se confirmó que el famoso actor, de setenta años de edad, se había infectado con coronavirus. | Similarity: 0.07"
+			intervals [96]:
+				xmin = 71.06620223076925
+				xmax = 71.36718400000002
+				text = "Expected: país | Found: El diecisiete de marzo dijo no sentirse bien y lo trasladaron a un hospital donde le diagnosticaron un grave caso de neumonía y se le sometió a tratamiento. | Similarity: 0.04"
+			intervals [97]:
+				xmin = 71.36718400000002
+				xmax = 71.65906560000002
+				text = "Expected: en | Found: El veinticinco de marzo, su representante dio a conocer que había dado positivo en una prueba de coronavirus. | Similarity: 0.04"
+			intervals [98]:
+				xmin = 71.65906560000002
+				xmax = 71.95094720000002
+				text = "Expected: las | Found: Shimura tenía una larga carrera en la televisión, sin embargo, se fue alejando de la representación de comedia | Similarity: 0.06"
+			intervals [99]:
+				xmin = 71.95094720000002
+				xmax = 72.24282880000001
+				text = "Expected: últimas | Found: y en dos mil seis se convirtió en el líder de una compañía teatral. | Similarity: 0.12"
+			intervals [100]:
+				xmin = 72.24282880000001
+				xmax = 72.53471040000001
+				text = "Expected: dos | Found: También tocaba el shamisen, | Similarity: 0.11"
+			intervals [101]:
+				xmin = 72.53471040000001
+				xmax = 72.826592
+				text = "Expected: semanas. | Found: un instrumentro japonés tradicional de tres cuerdas. | Similarity: 0.17"
+			intervals [102]:
+				xmin = 72.826592
+				xmax = 73.15317385714286
+				text = "Expected: Las | Found: Después de cumplir setenta años el mes pasado, continuó siendo el presentador de programas televisivos de variedades. @ | Similarity: 0.04"
+			intervals [103]:
+				xmin = 73.15317385714286
+				xmax = 73.47975571428572
+				text = "Expected: medidas | Found: descanso | Similarity: 0.33"
+			intervals [104]:
+				xmin = 73.47975571428572
+				xmax = 73.80633757142857
+				text = "Expected: relacionadas | Found: Nuestra emisora ha recabado el testimonio de Saito Takashi, un especialista en enfermedades infecciosas que trabaja en las urgencias de un hospital de Nueva Jersey cercano a la ciudad de Nueva York. | Similarity: 0.02"
+			intervals [105]:
+				xmin = 73.80633757142857
+				xmax = 74.13291942857143
+				text = "Expected: con | Found: Saito explica que el personal médico y de enfermería tiene que llevar la misma mascarilla durante todo el día | Similarity: 0.04"
+			intervals [106]:
+				xmin = 74.13291942857143
+				xmax = 74.45950128571428
+				text = "Expected: Estados | Found: debido a la falta de suministros. | Similarity: 0.28"
+			intervals [107]:
+				xmin = 74.45950128571428
+				xmax = 74.78608314285714
+				text = "Expected: Unidos | Found: Además, cuenta que tres cuartos de los pacientes de urgencias tienen la COVID-diecinueve, | Similarity: 0.12"
+			intervals [108]:
+				xmin = 74.78608314285714
+				xmax = 75.11266499999999
+				text = "Expected: se | Found: la neumonía causada por el nuevo tipo de coronavirus, | Similarity: 0.11"
+			intervals [109]:
+				xmin = 75.11266499999999
+				xmax = 75.43924685714285
+				text = "Expected: deben | Found: y que el número aumenta a diario. | Similarity: 0.11"
+			intervals [110]:
+				xmin = 75.43924685714285
+				xmax = 75.7658287142857
+				text = "Expected: al | Found: Por ello, cree que el hospital verá superada su capacidad | Similarity: 0.05"
+			intervals [111]:
+				xmin = 75.7658287142857
+				xmax = 76.09241057142856
+				text = "Expected: aumento | Found: pronto. | Similarity: 0.59"
+			intervals [112]:
+				xmin = 76.09241057142856
+				xmax = 76.41899242857141
+				text = "Expected: marcado | Found: Otro de los problemas a los que se enfrenta el hospital, cuenta el médico japonés, | Similarity: 0.07"
+			intervals [113]:
+				xmin = 76.41899242857141
+				xmax = 76.74557428571427
+				text = "Expected: de | Found: es la falta de camas para los pacientes que deban permanecer ingresados más tiempo | Similarity: 0.06"
+			intervals [114]:
+				xmin = 76.74557428571427
+				xmax = 77.07215614285712
+				text = "Expected: contagios | Found: por síntomas graves. | Similarity: 0.34"
+			intervals [115]:
+				xmin = 77.07215614285712
+				xmax = 77.39873799999998
+				text = "Expected: allí. | Found: Además, el centro médico no tiene respiradores suficientes, entre otros equipos. | Similarity: 0.04"
+			intervals [116]:
+				xmin = 77.39873799999998
+				xmax = 77.78677099999999
+				text = "Expected: Japó... | Found: Hasta el domingo, más de | Similarity: 0.25"
+			intervals [117]:
+				xmin = 77.78677099999999
+				xmax = 78.02513853333332
+				text = "Expected: Japón | Found: cincuenta y nueve mil quinientas personas habían dado positivo por coronavirus en el estado de Nueva York; | Similarity: 0.07"
+			intervals [118]:
+				xmin = 78.02513853333332
+				xmax = 78.26350606666665
+				text = "Expected: tiene | Found: Han fallecido novecientos sesenta y cinco. @ | Similarity: 0.13"
+			intervals [119]:
+				xmin = 78.26350606666665
+				xmax = 78.50187359999998
+				text = "Expected: previsto | Found: Las autoridades regionales en el Reino Unido y Francia se hallan haciendo frente a denuncias de violencia doméstica | Similarity: 0.10"
+			intervals [120]:
+				xmin = 78.50187359999998
+				xmax = 78.74024113333331
+				text = "Expected: hacer | Found: probablemente vinculada con el confinamiento a raíz de la pandemia de coronavirus. | Similarity: 0.08"
+			intervals [121]:
+				xmin = 78.74024113333331
+				xmax = 78.97860866666664
+				text = "Expected: lo | Found: El periódico británico The Guardian informó que la policía de Somerset and Avon | Similarity: 0.06"
+			intervals [122]:
+				xmin = 78.97860866666664
+				xmax = 79.21697619999998
+				text = "Expected: propio | Found: había registrado un aumento de veinte coma nueve por ciento de incidentes de violencia doméstica en las últimas dos semanas. | Similarity: 0.09"
+			intervals [123]:
+				xmin = 79.21697619999998
+				xmax = 79.45534373333331
+				text = "Expected: en | Found: El condado de Gran Manchester, en la región central británica, también dio a conocer que había denuncias de violencia relacionadas con el confinamiento. | Similarity: 0.03"
+			intervals [124]:
+				xmin = 79.45534373333331
+				xmax = 79.69371126666664
+				text = "Expected: el | Found: Funcionarios de condado indican que se podría deber al creciente estrés que las familias deben afrontar | Similarity: 0.05"
+			intervals [125]:
+				xmin = 79.69371126666664
+				xmax = 79.93207879999997
+				text = "Expected: caso | Found: por permanecer aisladas en casa o perder ingresos como resultado de las restricciones de desplazamiento. | Similarity: 0.11"
+			intervals [126]:
+				xmin = 79.93207879999997
+				xmax = 80.1704463333333
+				text = "Expected: de | Found: Algunas municipalidades en el Reino Unido instan a los repartidores | Similarity: 0.07"
+			intervals [127]:
+				xmin = 80.1704463333333
+				xmax = 80.40881386666663
+				text = "Expected: China | Found: y a | Similarity: 0.40"
+			intervals [128]:
+				xmin = 80.40881386666663
+				xmax = 80.64718139999997
+				text = "Expected: y | Found: cuidadores a domicilio | Similarity: 0.18"
+			intervals [129]:
+				xmin = 80.64718139999997
+				xmax = 80.8855489333333
+				text = "Expected: Corea | Found: a que observen la situación e informen sobre cualquier señal de abuso. | Similarity: 0.12"
+			intervals [130]:
+				xmin = 80.8855489333333
+				xmax = 81.12391646666663
+				text = "Expected: del | Found: En Francia, el ministro del Interior, Christophe | Similarity: 0.15"
+			intervals [131]:
+				xmin = 81.12391646666663
+				xmax = 81.36228399999996
+				text = "Expected: Sur; | Found: Castaner, | Similarity: 0.15"
+			intervals [132]:
+				xmin = 81.36228399999996
+				xmax = 81.63433369999996
+				text = "Expected: De | Found: dijo en la emisora pública France two | Similarity: 0.12"
+			intervals [133]:
+				xmin = 81.63433369999996
+				xmax = 81.90638339999995
+				text = "Expected: algunos | Found: que el número de denuncias de casos de violencia doméstica por parte de conyuges | Similarity: 0.15"
+			intervals [134]:
+				xmin = 81.90638339999995
+				xmax = 82.17843309999995
+				text = "Expected: países | Found: había aumentado un treinta y seis por ciento en una semana en París y sus alrededores. @ | Similarity: 0.10"
+			intervals [135]:
+				xmin = 82.17843309999995
+				xmax = 82.45048279999995
+				text = "Expected: de | Found: El compositor y director de orquesta polaco Krzysztof Penderecki, un célebre exponente de la música clásica contemporánea, | Similarity: 0.04"
+			intervals [136]:
+				xmin = 82.45048279999995
+				xmax = 82.72253249999994
+				text = "Expected: Europa, | Found: falleció el veinte y nueve de marzo a los ochenta y seis años. | Similarity: 0.09"
+			intervals [137]:
+				xmin = 82.72253249999994
+				xmax = 82.99458219999994
+				text = "Expected: entre | Found: Nacido en Debica, su obra «Treno a las víctimas de Hiroshima», | Similarity: 0.13"
+			intervals [138]:
+				xmin = 82.99458219999994
+				xmax = 83.26663189999994
+				text = "Expected: ellos | Found: para orquesta de cuerda, | Similarity: 0.18"
+			intervals [139]:
+				xmin = 83.26663189999994
+				xmax = 83.53868159999993
+				text = "Expected: el | Found: obtuvo un gran reconocimiento por parte del público | Similarity: 0.09"
+			intervals [140]:
+				xmin = 83.53868159999993
+				xmax = 83.81073129999993
+				text = "Expected: Reino | Found: tras su estreno en mil novecientos sesenta. | Similarity: 0.22"
+			intervals [141]:
+				xmin = 83.81073129999993
+				xmax = 84.08278099999993
+				text = "Expected: Unido, | Found: Su música sirvió de banda sonora en películas de terror estadounidenses como | Similarity: 0.15"
+			intervals [142]:
+				xmin = 84.08278099999993
+				xmax = 84.40612090909083
+				text = "Expected: y | Found: «El exorcista» | Similarity: 0.21"
+			intervals [143]:
+				xmin = 84.40612090909083
+				xmax = 84.72946081818174
+				text = "Expected: de | Found: y «El resplandor». @ | Similarity: 0.15"
+			intervals [144]:
+				xmin = 84.72946081818174
+				xmax = 85.05280072727264
+				text = "Expected: algunas | Found: Más de doscientas mil personas firmaron una petición para una nueva investigación | Similarity: 0.11"
+			intervals [145]:
+				xmin = 85.05280072727264
+				xmax = 85.37614063636354
+				text = "Expected: zonas | Found: relacionada con la opaca venta de terrenos públicos | Similarity: 0.14"
+			intervals [146]:
+				xmin = 85.37614063636354
+				xmax = 85.69948054545445
+				text = "Expected: del | Found: que desató acusaciones de favoritismo contra la administración del primer ministro japonés Abe Shinzo. | Similarity: 0.06"
+			intervals [147]:
+				xmin = 85.69948054545445
+				xmax = 86.02282045454535
+				text = "Expected: Sudeste | Found: La petición en el sitio web Change point org, | Similarity: 0.09"
+			intervals [148]:
+				xmin = 86.02282045454535
+				xmax = 86.34616036363626
+				text = "Expected: Asiático, | Found: que inició el viernes la viuda del exfuncionario del Ministerio de Hacienda Akagi Toshio, | Similarity: 0.14"
+			intervals [149]:
+				xmin = 86.34616036363626
+				xmax = 86.66950027272716
+				text = "Expected: como, | Found: tenía el apoyo de doscientas mil personas poco después de las cinco de la tarde del lunes. | Similarity: 0.09"
+			intervals [150]:
+				xmin = 86.66950027272716
+				xmax = 86.99284018181807
+				text = "Expected: por | Found: Akagi se suicidó | Similarity: 0.14"
+			intervals [151]:
+				xmin = 86.99284018181807
+				xmax = 87.31618009090897
+				text = "Expected: ejemplo, | Found: hace dos años | Similarity: 0.34"
+			intervals [152]:
+				xmin = 87.31618009090897
+				xmax = 87.63951999999988
+				text = "Expected: Tailandia. | Found: después de que se viera implicado en la falsificación de documentos ministeriales sobre la venta del terreno a la empresa Moritomo Gakuen, que gestiona escuelas. | Similarity: 0.02"
+			intervals [153]:
+				xmin = 87.63951999999988
+				xmax = 87.9548940869564
+				text = "Expected: Con | Found: La transacción desató la crítica porque la esposa de Abe, Akie, | Similarity: 0.10"
+			intervals [154]:
+				xmin = 87.9548940869564
+				xmax = 88.27026817391292
+				text = "Expected: estas | Found: fue nombrada directora honorífica de una escuela primaria que se iba a construir en el predio. | Similarity: 0.08"
+			intervals [155]:
+				xmin = 88.27026817391292
+				xmax = 88.58564226086945
+				text = "Expected: medidas, | Found: En relación con la falsificación, | Similarity: 0.12"
+			intervals [156]:
+				xmin = 88.58564226086945
+				xmax = 88.90101634782597
+				text = "Expected: se | Found: la fiscalía investigó a funcionarios gubernamentales, pero no procesó a ninguno. | Similarity: 0.08"
+			intervals [157]:
+				xmin = 88.90101634782597
+				xmax = 89.2163904347825
+				text = "Expected: prohíbe | Found: Este mes, la viuda de Akagi publicó la nota de suicidio de su marido, | Similarity: 0.06"
+			intervals [158]:
+				xmin = 89.2163904347825
+				xmax = 89.53176452173902
+				text = "Expected: el | Found: así como papeles en los que expresaba una profunda ansiedad | Similarity: 0.08"
+			intervals [159]:
+				xmin = 89.53176452173902
+				xmax = 89.84713860869554
+				text = "Expected: ingreso | Found: por haber sido obligado a alterar documentos públicos. | Similarity: 0.10"
+			intervals [160]:
+				xmin = 89.84713860869554
+				xmax = 90.16251269565207
+				text = "Expected: a | Found: A través de su abogado, la viuda dijo a nuestra emisora que agradecía el apoyo de tanta gente | Similarity: 0.05"
+			intervals [161]:
+				xmin = 90.16251269565207
+				xmax = 90.47788678260859
+				text = "Expected: las | Found: y que esperaba que el mensaje llegue tanto al primer ministro Abe como al titular de hacienda, | Similarity: 0.07"
+			intervals [162]:
+				xmin = 90.47788678260859
+				xmax = 90.79326086956512
+				text = "Expected: personas | Found: Aso Taro, | Similarity: 0.45"
+			intervals [163]:
+				xmin = 90.79326086956512
+				xmax = 91.10863495652164
+				text = "Expected: con | Found: y que se reabran las investigaciones. | Similarity: 0.12"
+			intervals [164]:
+				xmin = 91.10863495652164
+				xmax = 91.42400904347816
+				text = "Expected: pasaporte | Found: También dijo que iba a arriesgar su vida con el fin de que se haga realidad una nueva investigación, | Similarity: 0.04"
+			intervals [165]:
+				xmin = 91.42400904347816
+				xmax = 91.73938313043469
+				text = "Expected: de | Found: ya que su marido había sacrificado la suya para dejarle esas notas tan importantes. @ | Similarity: 0.05"
+			intervals [166]:
+				xmin = 91.73938313043469
+				xmax = 92.05475721739121
+				text = "Expected: un | Found: Antes de terminar le recordamos nuestra primera noticia de hoy. | Similarity: 0.05"
+			intervals [167]:
+				xmin = 92.05475721739121
+				xmax = 92.37013130434774
+				text = "Expected: tercio, | Found: Japón tiene previsto ampliar la prohibición de entrada al país a viajeros de otras nacionalidades procedentes de Estados Unidos, China, Corea del Sur, | Similarity: 0.04"
+			intervals [168]:
+				xmin = 92.37013130434774
+				xmax = 92.68550539130426
+				text = "Expected: aproximadamente, | Found: la mayoría de naciones europeas | Similarity: 0.23"
+			intervals [169]:
+				xmin = 92.68550539130426
+				xmax = 93.00087947826079
+				text = "Expected: de | Found: y algunos lugares del Sudeste Asiático, | Similarity: 0.11"
+			intervals [170]:
+				xmin = 93.00087947826079
+				xmax = 93.31625356521731
+				text = "Expected: los | Found: con la propagación de la pandemia de coronavirus como trasfondo. | Similarity: 0.07"
+			intervals [171]:
+				xmin = 93.31625356521731
+				xmax = 93.63162765217383
+				text = "Expected: países | Found: Además, el Gobierno japonés ha decidido aumentar a tres el nivel de alerta de viajes a todo el territorio estadounidense; | Similarity: 0.09"
+			intervals [172]:
+				xmin = 93.63162765217383
+				xmax = 93.94700173913036
+				text = "Expected: y | Found: En ex, en este contexto, recomienda cancelar todos los viajes a Estados Unidos. | Similarity: 0.06"
+			intervals [173]:
+				xmin = 93.94700173913036
+				xmax = 94.26237582608688
+				text = "Expected: territorios | Found: Asimismo, se prohíbe la entrada a Japón | Similarity: 0.16"
+			intervals [174]:
+				xmin = 94.26237582608688
+				xmax = 94.5777499130434
+				text = "Expected: del | Found: a todas las personas de nacionalidad extranjera que hayan estado en ese país en las últimas dos semanas. | Similarity: 0.05"
+			intervals [175]:
+				xmin = 94.5777499130434
+				xmax = 94.89312399999993
+				text = "Expected: mundo, | Found: Las medidas relacionadas con Estados Unidos se deben al aumento marcado de contagios allí. | Similarity: 0.10"
+			intervals [176]:
+				xmin = 94.89312399999993
+				xmax = 95.20435949999992
+				text = "Expected: salvo | Found: Japón tiene previsto hacer lo propio en el caso de China y Corea del Sur; | Similarity: 0.04"
+			intervals [177]:
+				xmin = 95.20435949999992
+				xmax = 95.51559499999992
+				text = "Expected: que | Found: De algunos países de Europa, entre ellos el Reino Unido, | Similarity: 0.05"
+			intervals [178]:
+				xmin = 95.51559499999992
+				xmax = 95.82683049999991
+				text = "Expected: tengan | Found: y de algunas zonas del Sudeste Asiático, como, por ejemplo, | Similarity: 0.07"
+			intervals [179]:
+				xmin = 95.82683049999991
+				xmax = 96.13806599999991
+				text = "Expected: un | Found: Tailandia. | Similarity: 0.31"
+			intervals [180]:
+				xmin = 96.13806599999991
+				xmax = 96.4493014999999
+				text = "Expected: motivo | Found: Con estas medidas, se prohíbe el ingreso a las personas con pasaporte de un tercio, aproximadamente, de los países y territorios del mundo, | Similarity: 0.09"
+			intervals [181]:
+				xmin = 96.4493014999999
+				xmax = 96.7605369999999
+				text = "Expected: especial | Found: salvo que tengan | Similarity: 0.29"
+			intervals [182]:
+				xmin = 96.7605369999999
+				xmax = 97.0717724999999
+				text = "Expected: para | Found: un motivo especial | Similarity: 0.22"
+			intervals [183]:
+				xmin = 97.0717724999999
+				xmax = 97.38300799999989
+				text = "Expected: entrar. | Found: para entrar. @ | Similarity: 0.56"
+			intervals [184]:
+				xmin = 97.38300799999989
+				xmax = 97.6750687499999
+				text = "Expected: El | Found: conclusión | Similarity: 0.12"
