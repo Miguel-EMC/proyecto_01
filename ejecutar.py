@@ -1,56 +1,82 @@
 #!/usr/bin/env python3
-
+# Proyecto final - Alineación de transcripciones
+# Este script ejecuta todo el proceso de alineación
 import os
 import sys
-import subprocess
+from transcription_alignment import AlineadorTranscripcion
+
 
 def run_alignment():
-    """Ejecutar el sistema de alineación"""
+    # Función principal que hace todo el trabajo
 
-    data_dir = "data/training/202003301830"
+    print("=== Mi proyecto de alineación ===")
+    print()
+
+    # Configuración de rutas de archivos
+    html_dir = "data/training/202003301830"
+    textgrid_v = "data/training/202003301830_v.TextGrid"
     output_dir = "output"
 
-    # ver si están los archivos
-    textgrid_file = os.path.join(data_dir, "202003301830.TextGrid")
-    audio_file = os.path.join(data_dir, "202003301830.mp3")
-
-    if not os.path.exists(textgrid_file):
-        print(f"Error: No se encuentra {textgrid_file}")
+    # Verificar que existan los archivos
+    if not os.path.exists(html_dir):
+        print(f"No existe el directorio {html_dir}")
         return False
 
-    if not os.path.exists(audio_file):
-        print(f"Error: No se encuentra {audio_file}")
+    if not os.path.exists(textgrid_v):
+        print(f"No existe el archivo {textgrid_v}")
         return False
 
-    # crear carpeta de salida
-    os.makedirs(output_dir, exist_ok=True)
+    print(f"HTML: {html_dir}")
+    print(f"TextGrid: {textgrid_v}")
+    print(f"Output: {output_dir}")
+    print()
 
-    # ejecutar con todos los HTML
-    cmd = [
-        sys.executable,
-        "transcription_alignment.py",
-        data_dir,
-        textgrid_file,
-        audio_file,
-        output_dir
-    ]
-
-    print("Ejecutando alineación...")
-    print(f"Comando: {' '.join(cmd)}")
+    # Crear el objeto que hace la alineación
+    aligner = AlineadorTranscripcion()
 
     try:
-        result = subprocess.run(cmd, check=True)
-        print("Proceso completado")
+        print("Empezando...")
+        result = aligner.procesar_alineacion(html_dir, textgrid_v, output_dir)
+
+        print("\n" + "="*50)
+        print("TERMINADO!")
+        print("="*50)
+
+        # Mostrar los resultados
+        print(f"Segmentos creados: {len(result['segmentos_transc'])}")
+        print(f"Segmentos IPU: {len(result['segmentos_ipu'])}")
+        print(f"Errores: {len(result['segmentos_errores'])}")
+        print(f"Similitud: {result['similitud_promedio']:.3f}")
+        print(f"Errores %: {result['tasa_errores']:.3f}")
+
+        print(f"\nArchivos creados:")
+        for file in sorted(os.listdir(output_dir)):
+            print(f"   {file}")
+
+        print(f"\nQué hacer ahora:")
+        print(f"1. Abrir Praat")
+        print(f"2. Abrir el audio")
+        print(f"3. Abrir el TextGrid: {output_dir}/transcripcion_alineada.TextGrid")
+        print(f"4. Ver si la alineación está bien")
+        print(f"5. Revisar errores")
+
         return True
-    except subprocess.CalledProcessError as e:
-        print(f"Error: {e}")
+
+    except Exception as e:
+        print(f"\nError: {e}")
         return False
 
+
 if __name__ == "__main__":
-    if run_alignment():
-        print("\nArchivos en output/:")
-        for f in os.listdir("output"):
-            print(f"  - {f}")
+    # Si ejecuto el script directamente
+    if len(sys.argv) > 1:
+        if sys.argv[1] in ['-h', '--help', 'help']:
+            print("python ejecutar.py")
+            print("Ejecuta mi programa de alineación")
+        else:
+            print("No existe esa opción")
     else:
-        print("\nError, algo salió mal")
-        sys.exit(1)
+        success = run_alignment()
+        if not success:
+            print("Algo salió mal :(")
+        sys.exit(0 if success else 1)

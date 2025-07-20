@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  transcription-alignment:
+    build: .
+    volumes:
+      - ./data:/app/data
+      - ./output:/app/output
+    working_dir: /app
+    environment:
+      - PYTHONPATH=/app
+      - LANG=C.UTF-8
+      - LC_ALL=C.UTF-8
+    stdin_open: true
+    tty: true

@@ -1,0 +1,2 @@
+textgrid==1.5
+numpy

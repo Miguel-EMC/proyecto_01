@@ -1,971 +1,434 @@
 #!/usr/bin/env python3
-"""
-Transcription Alignment System
-"""
+# Sistema de Alineación de Transcripciones
 import re
 import os
 import sys
 import difflib
-import subprocess
-from typing import List, Tuple, Dict, Optional, Any
+from typing import List, Dict, Optional, Tuple
 from dataclasses import dataclass
-try:
-    import textgrid
-    TEXTGRID_AVAILABLE = True
-except ImportError:
-    print("Warning: textgrid module not available. Using manual parsing only.")
-    TEXTGRID_AVAILABLE = False
 
 try:
     from sml import sml
-    SML_AVAILABLE = True
 except ImportError:
-    print("Warning: sml module not available. Some features may be limited.")
-    SML_AVAILABLE = False
     sml = None
 
 
 @dataclass
-class TranscriptionSegment:
-    """Representar un segmento de transcripción con tiempo y texto"""
-    start_time: float
-    end_time: float
-    text: str
-    confidence: float = 1.0
+class SegmentoTranscripcion:
+    tiempo_inicio: float
+    tiempo_fin: float
+    texto: str
+    confianza: float = 1.0
+
 
 @dataclass
-class AlignmentResult:
-    """Resultado de alineación entre transcripción y IPU"""
-    transcription_segments: List[TranscriptionSegment]
-    ipu_segments: List[TranscriptionSegment]
-    aligned_pairs: List[Tuple[int, int]]
-    errors: List[Dict[str, Any]]
+class SegmentoError:
+    tiempo_inicio: float
+    tiempo_fin: float
+    tipo_error: str
+    texto_esperado: str
+    texto_encontrado: str
+    confianza: float
 
-class TranscriptionAligner:
-    """Sistema principal de alineación de transcripciones"""
+
+class AlineadorTranscripcion:
+
     def __init__(self):
         self.sml = sml
 
-    def parse_transcription_html(self, html_path: str) -> str:
-        """
-        Extraer y limpira el texto de transcripción de archivos HTML
-        Args:
-            html_path: Ruta al archivo HTML
-
-        Returns:
-            Texto limpio extraído del HTML
-        """
-        try:
-            with open(html_path, 'r', encoding='utf-8') as file:
-                content = file.read()
-            body_pattern = r'<div class="p-article__body">(.*?)</div>'
-            body_match = re.search(body_pattern, content, re.DOTALL)
-            if not body_match:
-                paragraph_pattern = r'<p[^>]*>(.*?)</p>'
-                paragraphs = re.findall(paragraph_pattern, content, re.DOTALL)
-                text = ' '.join(paragraphs)
-            else:
-                text = body_match.group(1)
-
-            # Limpiar etiquetas HTML
-            text = re.sub(r'<[^>]+>', '', text)
-            # Limpiar espacios y caracteres especiales
-            text = re.sub(r'\s+', ' ', text)
-            text = re.sub(r'&nbsp;', ' ', text)
-            text = re.sub(r'&[a-zA-Z0-9]+;', ' ', text)
-            return text.strip()
-        except Exception as e:
-            print(f"Error parsing HTML file {html_path}: {e}")
+    def extraer_texto_html(self, directorio_html: str) -> str:
+        """Extrae y combina texto de archivos HTML"""
+        if not os.path.exists(directorio_html):
             return ""
 
-    def parse_multiple_html_files(self, html_dir: str) -> str:
-        """
-        Extraer y combinar texto de múltiples archivos HTML numerados
-        Args:
-            html_dir: Directorio que contiene archivos HTML numerados (01.html, 02.html, etc.)
-        Returns:
-            Texto combinado de todos los archivos HTML
-        """
-        combined_text = []
+        archivos_html = [f for f in os.listdir(directorio_html)
+                        if f.endswith('.html') and f[:-5].isdigit()]
+        archivos_html.sort(key=lambda x: int(x[:-5]))
 
+        texto_combinado = []
+        for archivo in archivos_html:
+            ruta = os.path.join(directorio_html, archivo)
+            with open(ruta, 'r', encoding='utf-8', errors='replace') as f:
+                contenido = f.read()
+
+            # Buscar contenido en div p-article__body
+            patron = r'<div class="p-article__body">(.*?)</div>'
+            match = re.search(patron, contenido, re.DOTALL)
+
+            if match:
+                texto = match.group(1)
+                # Limpiar HTML
+                texto = re.sub(r'<[^>]+>', '', texto)
+                texto = re.sub(r'&[a-zA-Z0-9]+;', ' ', texto)
+                texto = re.sub(r'\s+', ' ', texto)
+                texto_combinado.append(texto.strip())
+
+        return ' '.join(texto_combinado)
+
+    def parsear_textgrid_ipu(self, ruta_textgrid: str) -> List[SegmentoTranscripcion]:
+        """Extrae segmentos IPU del TextGrid"""
         try:
-            import os
-            html_files = []
-            for filename in os.listdir(html_dir):
-                if filename.endswith('.html') and filename[:-5].isdigit():
-                    html_files.append(filename)
-
-            # Ordenar archivos por número
-            html_files.sort(key=lambda x: int(x[:-5]))
-            print(f"Encontrados en la carpeta {len(html_files)} archivos HTML: {html_files}")
-
-            for filename in html_files:
-                html_path = os.path.join(html_dir, filename)
-                text = self.parse_transcription_html(html_path)
-                if text:
-                    combined_text.append(text)
-                    print(f"Extraído de {filename}: {len(text)} caracteres")
-
-            return ' '.join(combined_text)
-
-        except Exception as e:
-            print(f"Error parsing multiple HTML files from {html_dir}: {e}")
-            return ""
-
-    def extract_ipu_segments(self, textgrid_path: str) -> List[TranscriptionSegment]:
-        """
-        Extraer segmentos IPU del archivo TextGrid
-
-        Args:
-            textgrid_path: Ruta al archivo TextGrid
-
-        Returns:
-            Lista de segmentos IPU
-        """
-        try:
-            ipu_segments = self._parse_textgrid_manually(textgrid_path)
-            if ipu_segments:
-                return ipu_segments
-            if TEXTGRID_AVAILABLE:
-                tg = textgrid.TextGrid.fromFile(textgrid_path)
-                ipu_segments = []
-                ipu_tier = None
-                for tier in tg.tiers:
-                    if tier.name.lower() == 'ipu':
-                        ipu_tier = tier
-                        break
-                if not ipu_tier:
-                    print(f"No se encontró tier IPU en {textgrid_path}")
-                    return []
-                for interval in ipu_tier:
-                    if interval.mark and interval.mark.strip() != '#':
-                        segment = TranscriptionSegment(
-                            start_time=interval.minTime,
-                            end_time=interval.maxTime,
-                            text=interval.mark.strip()
-                        )
-                        ipu_segments.append(segment)
-
-                return ipu_segments
-            else:
-                print("textgrid library not available and manual parsing failed")
-                return []
-        except Exception as e:
-            print(f"Error extracting IPU segments from {textgrid_path}: {e}")
+            with open(ruta_textgrid, 'r', encoding='utf-8', errors='replace') as f:
+                contenido = f.read()
+        except:
             return []
 
-    def _parse_textgrid_manually(self, textgrid_path: str) -> List[TranscriptionSegment]:
-        """
-        Parsear manualmente el archivo TextGrid para manejar problemas de codificación
-        donde cada carácter está separado por espacios.
+        lineas = contenido.split('\n')
+        segmentos = []
 
-        Args:
-            textgrid_path: Ruta al archivo TextGrid
+        # Buscar tier IPU
+        indice_ipu = -1
+        for i, linea in enumerate(lineas):
+            if '"IPU"' in linea.strip():
+                indice_ipu = i + 1
+                break
 
-        Returns:
-            Lista de segmentos IPU extraídos manualmente
-        """
-        try:
-            # Probar diferentes codificaciones, incluyendo UTF-16
-            encodings = ['utf-16', 'utf-16-le', 'utf-16-be', 'utf-8', 'latin-1', 'cp1252', 'iso-8859-1']
-            content = None
-            encoding_used = None
-            for encoding in encodings:
-                try:
-                    with open(textgrid_path, 'r', encoding=encoding) as f:
-                        content = f.read()
-                    encoding_used = encoding
-                    break
-                except UnicodeDecodeError:
-                    continue
-
-            if content is None:
-                print(f"No se pudo leer el archivo con ninguna codificación: {textgrid_path}")
-                return []
-            lines = content.split('\n')
-            ipu_segments = []
-            ipu_tier_found = False
-            i = 0
-            while i < len(lines):
-                line = lines[i].strip()
-                if line == '"IPU"':
-                    ipu_tier_found = True
-                    i += 1
-                    break
-                i += 1
-
-            if not ipu_tier_found:
-                print(f"No se encontró tier IPU en {textgrid_path}")
-                print("Líneas alrededor de la ubicación esperada del tier IPU:")
-                for j in range(max(0, 50), min(len(lines), 70)):
-                    print(f"  Línea {j}: {repr(lines[j])}")
-                return []
-            while i < len(lines) and lines[i].strip() != '0':
-                i += 1
-            if i < len(lines):
-                i += 1
-            if i < len(lines):
-                i += 1
-            if i < len(lines):
-                try:
-                    count = int(lines[i].strip())
-                    i += 1
-                except ValueError:
-                    count = 0
-            else:
-                count = 0
-            interval_count = 0
-            while i < len(lines) and interval_count < count:
-                try:
-                    start_time = float(lines[i].strip())
-                    i += 1
-                    end_time = float(lines[i].strip())
-                    i += 1
-                    text_line = lines[i].strip()
-                    if text_line.startswith('"') and text_line.endswith('"'):
-                        text = text_line[1:-1]
-                    else:
-                        text = text_line
-                    i += 1
-                    # Solo agregar segmentos no vacíos que no sean solo '#' o '_'
-                    if text and text.strip() not in ['#', '_', '']:
-                        segment = TranscriptionSegment(
-                            start_time=start_time,
-                            end_time=end_time,
-                            text=text.strip()
-                        )
-                        ipu_segments.append(segment)
-                    interval_count += 1
-
-                except (ValueError, IndexError) as e:
-                    print(f"Error parsing interval at line {i}: {e}")
-                    i += 1
-                    continue
-
-            return ipu_segments
-
-        except Exception as e:
-            print(f"Error en parseo manual del TextGrid: {e}")
+        if indice_ipu == -1:
             return []
 
-    def align_transcription_to_ipu(self, html_text: str, ipu_segments: List[TranscriptionSegment]) -> AlignmentResult:
-        """
-        Alinear el texto de transcripción con los segmentos IPU usando alineación global
-        Args:
-            html_text: Texto extraído del HTML
-            ipu_segments: Lista de segmentos IPU
-        Returns:
-            Resultado de alineación
-        """
-        ipu_text = ' '.join([seg.text for seg in ipu_segments])
+        # Buscar número de intervalos
+        i = indice_ipu
+        while i < len(lineas):
+            linea = lineas[i].strip()
+            if linea.replace('.', '').isdigit() and float(linea) > 10:
+                break
+            i += 1
 
-        # Normalizar textos para comparación
-        html_normalized = self._normalize_text(html_text)
-        ipu_normalized = self._normalize_text(ipu_text)
-        print(f"HTML text length: {len(html_normalized)} characters")
-        print(f"IPU text length: {len(ipu_normalized)} characters")
+        if i >= len(lineas):
+            return []
 
-        if self.sml:
-            # Convertir textos a vectores numéricos para comparación
-            html_vec = [float(ord(c)) for c in html_normalized[:100]]  # Limitar longitud
-            ipu_vec = [float(ord(c)) for c in ipu_normalized[:100]]
+        try:
+            num_intervalos = int(float(lineas[i].strip()))
+            i += 1
+        except:
+            return []
 
-            # Igualar longitudes
-            max_len = max(len(html_vec), len(ipu_vec))
-            html_vec.extend([0.0] * (max_len - len(html_vec)))
-            ipu_vec.extend([0.0] * (max_len - len(ipu_vec)))
+        # Procesar intervalos
+        procesados = 0
+        while i < len(lineas) and procesados < num_intervalos:
+            try:
+                tiempo_inicio = float(lineas[i].strip())
+                tiempo_fin = float(lineas[i + 1].strip())
+                texto = lineas[i + 2].strip().strip('"')
+                i += 3
 
-            # Calcular similitud usando métricas de sml.py
-            mae = float(self.sml.mae_metric(html_vec, ipu_vec))
-            max_val = max(max(html_vec), max(ipu_vec)) if html_vec and ipu_vec else 1.0
-            similarity_ratio = 1.0 - (mae / max_val) if max_val > 0 else 0.0
-            similarity_ratio = max(0.0, min(1.0, similarity_ratio))
-        else:
-            # Fallback a difflib
-            matcher = difflib.SequenceMatcher(None, html_normalized, ipu_normalized)
-            similarity_ratio = matcher.ratio()
+                # Solo agregar segmentos con texto válido
+                if texto and texto not in ['#', '_', '']:
+                    segmento = SegmentoTranscripcion(
+                        tiempo_inicio=tiempo_inicio,
+                        tiempo_fin=tiempo_fin,
+                        texto=texto.strip()
+                    )
+                    segmentos.append(segmento)
 
-        print(f"Similarity ratio: {similarity_ratio:.3f}")
-
-        aligned_pairs = []
-        errors = []
-        transcription_segments = []
-        matching_blocks = matcher.get_matching_blocks()
-        print(f"Found {len(matching_blocks)} matching blocks")
-
-        # Crear segmentos de transcripción basados en IPU pero con texto HTML alineado
-        html_words = html_normalized.split()
-        ipu_words = ipu_normalized.split()
-
-        if self.sml and len(html_words) > 0 and len(ipu_words) > 0:
-            # Crear dataset con longitudes de palabras para análisis
-            word_lengths = [[len(word), i] for i, word in enumerate(html_words)]
-
-            if len(word_lengths) > 1:
-                minmax = self.sml.dataset_minmax(word_lengths)
-                normalized_lengths = self.sml.normalize_dataset(word_lengths.copy(), minmax)
-                means = self.sml.column_means(normalized_lengths)
-                print(f"Longitud promedio normalizada de palabras: {means[0]:.3f}")
-
-        # Mapear palabras HTML a segmentos IPU usando posición relativa
-        html_word_index = 0
-        total_html_words = len(html_words)
-
-        for segment in ipu_segments:
-            if segment.text.strip() in ['#', '_', '']:
+                procesados += 1
+            except:
+                i += 1
                 continue
-            segment_words = self._normalize_text(segment.text).split()
-            # Calcular cuántas palabras HTML corresponden a este segmento
-            if self.sml and len(segment_words) > 0 and len(ipu_words) > 0:
-                segment_data = [[len(segment_words), len(ipu_words), total_html_words]]
-                minmax = self.sml.dataset_minmax(segment_data)
-                if minmax and len(minmax) == 2:
-                    normalized_data = self.sml.normalize_dataset(segment_data.copy(), minmax)
-                    segment_ratio = normalized_data[0][0] if normalized_data[0][0] > 0 else len(segment_words) / len(ipu_words)
-                else:
-                    segment_ratio = len(segment_words) / len(ipu_words)
+
+        return segmentos
+
+    def normalizar_texto(self, texto: str) -> str:
+        """Normaliza texto para comparación"""
+        if not texto:
+            return ""
+        texto = texto.lower()
+        texto = re.sub(r'[^\w\s]', '', texto)
+        texto = re.sub(r'\s+', ' ', texto)
+        return texto.strip()
+
+    def calcular_similitud(self, texto1: str, texto2: str) -> float:
+        """Calcula similitud entre textos"""
+        if self.sml and texto1 and texto2:
+            # Usar SML si está disponible
+            palabras1 = texto1.split()
+            palabras2 = texto2.split()
+            if palabras1 and palabras2:
+                vec1 = [float(len(palabra)) for palabra in palabras1[:20]]
+                vec2 = [float(len(palabra)) for palabra in palabras2[:20]]
+
+                # Igualar longitudes
+                max_len = max(len(vec1), len(vec2))
+                vec1.extend([0.0] * (max_len - len(vec1)))
+                vec2.extend([0.0] * (max_len - len(vec2)))
+
+                try:
+                    error = float(self.sml.mae_metric(vec1, vec2))
+                    max_val = max(max(vec1), max(vec2)) if vec1 and vec2 else 1.0
+                    if max_val > 0:
+                        similitud = 1.0 - min(1.0, error / max_val)
+                    else:
+                        similitud = 1.0 if error == 0 else 0.0
+                    return max(0.0, min(1.0, similitud))
+                except:
+                    pass
+
+        return difflib.SequenceMatcher(None, texto1, texto2).ratio()
+
+    def crear_tier_transcripcion(self, texto_html: str, segmentos_ipu: List[SegmentoTranscripcion]) -> List[SegmentoTranscripcion]:
+        """Crea tier Transc alineando texto HTML con timestamps IPU"""
+        if not texto_html or not segmentos_ipu:
+            return []
+
+        palabras_html = self.normalizar_texto(texto_html).split()
+        segmentos_transc = []
+        indice_html = 0
+        total_palabras_html = len(palabras_html)
+
+        for seg_ipu in segmentos_ipu:
+            if indice_html >= total_palabras_html:
+                break
+
+            # Estimar palabras HTML para este segmento IPU
+            palabras_ipu = self.normalizar_texto(seg_ipu.texto).split()
+            total_palabras_ipu = sum(len(self.normalizar_texto(s.texto).split()) for s in segmentos_ipu)
+
+            if total_palabras_ipu > 0:
+                ratio_palabras = len(palabras_ipu) / total_palabras_ipu
+                palabras_estimadas = max(1, int(total_palabras_html * ratio_palabras))
             else:
-                segment_ratio = len(segment_words) / len(ipu_words) if len(ipu_words) > 0 else 0
-            expected_html_words = max(1, int(total_html_words * segment_ratio))
+                palabras_estimadas = 1
 
             # Extraer palabras HTML correspondientes
-            end_index = min(html_word_index + expected_html_words, total_html_words)
-            segment_html_words = html_words[html_word_index:end_index]
+            fin_indice = min(indice_html + palabras_estimadas, total_palabras_html)
+            palabras_segmento = palabras_html[indice_html:fin_indice]
 
-            if segment_html_words:
-                # Crear segmento de transcripción con texto HTML alineado
-                aligned_text = ' '.join(segment_html_words)
-                trans_segment = TranscriptionSegment(
-                    start_time=segment.start_time,
-                    end_time=segment.end_time,
-                    text=aligned_text
+            if palabras_segmento:
+                texto_transc = ' '.join(palabras_segmento)
+                confianza = self.calcular_similitud(texto_transc, seg_ipu.texto)
+
+                segmento_transc = SegmentoTranscripcion(
+                    tiempo_inicio=seg_ipu.tiempo_inicio,
+                    tiempo_fin=seg_ipu.tiempo_fin,
+                    texto=texto_transc,
+                    confianza=confianza
                 )
-                transcription_segments.append(trans_segment)
-                if self.sml:
-                    # Convertir textos a vectores para comparación
-                    seg_text = ' '.join(segment_words)
-                    seg_vec = [float(ord(c)) for c in seg_text[:50]]
-                    align_vec = [float(ord(c)) for c in aligned_text[:50]]
+                segmentos_transc.append(segmento_transc)
+                indice_html = fin_indice
 
-                    # Igualar longitudes
-                    max_len = max(len(seg_vec), len(align_vec))
-                    seg_vec.extend([0.0] * (max_len - len(seg_vec)))
-                    align_vec.extend([0.0] * (max_len - len(align_vec)))
+        return segmentos_transc
 
-                    # Calcular similitud
-                    mae = float(self.sml.mae_metric(seg_vec, align_vec))
-                    max_val = max(max(seg_vec), max(align_vec)) if seg_vec and align_vec else 1.0
-                    segment_similarity = 1.0 - (mae / max_val) if max_val > 0 else 0.0
-                    segment_similarity = max(0.0, min(1.0, segment_similarity))
-                else:
-                    segment_similarity = difflib.SequenceMatcher(
-                        None,
-                        ' '.join(segment_words),
-                        aligned_text
-                    ).ratio()
+    def detectar_errores(self, segmentos_transc: List[SegmentoTranscripcion],
+                        segmentos_ipu: List[SegmentoTranscripcion]) -> List[SegmentoError]:
+        """Detecta errores entre transcripción e IPU"""
+        errores = []
+        min_segmentos = min(len(segmentos_transc), len(segmentos_ipu))
 
-                if segment_similarity < 0.6:
-                    error = {
-                        'type': 'mismatch',
-                        'html_words': segment_html_words,
-                        'ipu_words': segment_words,
-                        'similarity': segment_similarity,
-                        'start_time': segment.start_time,
-                        'end_time': segment.end_time
-                    }
-                    errors.append(error)
+        for i in range(min_segmentos):
+            seg_transc = segmentos_transc[i]
+            seg_ipu = segmentos_ipu[i]
 
-                html_word_index = end_index
+            # Normalizar textos
+            texto_transc_norm = self.normalizar_texto(seg_transc.texto)
+            texto_ipu_norm = self.normalizar_texto(seg_ipu.texto)
 
-        return AlignmentResult(
-            transcription_segments=transcription_segments,
-            ipu_segments=ipu_segments,
-            aligned_pairs=aligned_pairs,
-            errors=errors
-        )
+            # Calcular similitud
+            similitud = self.calcular_similitud(texto_transc_norm, texto_ipu_norm)
 
-    def _normalize_text(self, text: str) -> str:
-        """Normalizar texto para comparación """
-        if not text:
-            return ""
-        text = text.lower()
-        text = re.sub(r'[^\w\s]', '', text)
-        text = re.sub(r'\s+', ' ', text)
-        text = text.strip()
-        if self.sml and len(text) > 0:
-            char_values = [[float(ord(char))] for char in text]
-            if len(char_values) > 1:
-                minmax = self.sml.dataset_minmax(char_values)
-                normalized_chars = self.sml.normalize_dataset(char_values, minmax)
-                normalized_text = ''.join(chr(int(32 + val[0] * 94)) for val in normalized_chars)
-                return normalized_text
+            # Detectar errores si similitud es baja
+            if similitud < 0.7:
+                tipo_error = self.clasificar_error(texto_transc_norm, texto_ipu_norm)
 
-        return text
+                error = SegmentoError(
+                    tiempo_inicio=seg_transc.tiempo_inicio,
+                    tiempo_fin=seg_transc.tiempo_fin,
+                    tipo_error=tipo_error,
+                    texto_esperado=seg_transc.texto,
+                    texto_encontrado=seg_ipu.texto,
+                    confianza=1.0 - similitud
+                )
+                errores.append(error)
 
-    def generate_textgrid_transc(self, alignment_result: AlignmentResult, output_path: str) -> bool:
-        """
-        Generar un nuevo archivo TextGrid con tier Transc
+        return errores
 
-        Args:
-            alignment_result: Resultado de alineación
-            output_path: Ruta de salida para el TextGrid
+    def clasificar_error(self, texto_transc: str, texto_ipu: str) -> str:
+        """Clasifica el tipo de error según requerimientos específicos"""
+        palabras_transc = texto_transc.split()
+        palabras_ipu = texto_ipu.split()
 
-        Returns:
-            True si se generó exitosamente
-        """
+        # Calcular diferencias
+        set_transc = set(palabras_transc)
+        set_ipu = set(palabras_ipu)
+
+        palabras_presentes_audio_no_transcripcion = set_ipu - set_transc
+        palabras_presentes_transcripcion_no_audio = set_transc - set_ipu
+        palabras_comunes = set_transc & set_ipu
+
+        # 1. Palabras presentes en audio pero no en transcripción (palabras faltantes en transcripción)
+        if len(palabras_presentes_audio_no_transcripcion) > len(palabras_presentes_transcripcion_no_audio):
+            muestra = list(palabras_presentes_audio_no_transcripcion)[:3]
+            return f"palabras_faltantes_en_transcripcion: {', '.join(muestra)}"
+
+        # 2. Palabras presentes en transcripción pero no en audio
+        elif len(palabras_presentes_transcripcion_no_audio) > len(palabras_presentes_audio_no_transcripcion):
+            muestra = list(palabras_presentes_transcripcion_no_audio)[:3]
+            return f"palabras_extra_en_transcripcion: {', '.join(muestra)}"
+
+        # 3. Detectar palabras intercambiadas de posición
+        elif len(palabras_transc) == len(palabras_ipu) and len(palabras_comunes) == len(set_transc):
+            if palabras_transc != palabras_ipu:
+                intercambios = []
+                for i, (p_transc, p_ipu) in enumerate(zip(palabras_transc, palabras_ipu)):
+                    if p_transc != p_ipu:
+                        intercambios.append(f"pos{i}:{p_transc}→{p_ipu}")
+                if intercambios:
+                    return f"palabras_intercambiadas_posicion: {', '.join(intercambios[:2])}"
+
+        # 4. Detectar palabras intercambiadas con otras (sustituciones)
+        elif len(palabras_transc) == len(palabras_ipu) and len(palabras_comunes) < len(set_transc):
+            sustituciones = []
+            for i, (p_transc, p_ipu) in enumerate(zip(palabras_transc, palabras_ipu)):
+                if p_transc != p_ipu:
+                    sustituciones.append(f"{p_transc}→{p_ipu}")
+            if sustituciones:
+                return f"palabras_intercambiadas: {', '.join(sustituciones[:2])}"
+
+        # 5. Discrepancia general
+        else:
+            return f"discrepancia_general: t{len(palabras_transc)}_a{len(palabras_ipu)}_comunes{len(palabras_comunes)}"
+
+    def generar_textgrid(self, segmentos_transc: List[SegmentoTranscripcion],
+                        segmentos_errores: List[SegmentoError],
+                        ruta_salida: str) -> bool:
+        """Genera TextGrid con tiers Transc y Errors"""
         try:
-            if not TEXTGRID_AVAILABLE:
-                # Generar manualmente si la librería textgrid no está disponible
-                return self._generate_textgrid_manually(alignment_result, output_path, "Transc")
-            tg = textgrid.TextGrid()
-            if not alignment_result.transcription_segments:
-                max_time = 1.0
-            else:
-                max_time = max([seg.end_time for seg in alignment_result.transcription_segments])
-            tg.maxTime = max_time
-            # Crear tier Transc
-            transc_tier = textgrid.IntervalTier(name="Transc", minTime=0, maxTime=max_time)
-            for segment in alignment_result.transcription_segments:
-                interval = textgrid.Interval(
-                    minTime=segment.start_time,
-                    maxTime=segment.end_time,
-                    mark=segment.text
-                )
-                transc_tier.intervals.append(interval)
-            tg.tiers.append(transc_tier)
-            tg.write(output_path)
+            tiempo_max = max([seg.tiempo_fin for seg in segmentos_transc]) if segmentos_transc else 1.0
+
+            contenido = [
+                'File type = "ooTextFile"',
+                'Object class = "TextGrid"',
+                '',
+                '0',
+                f'{tiempo_max}',
+                '<exists>',
+                '2'
+            ]
+
+            # Tier Transc
+            contenido.extend([
+                '"IntervalTier"',
+                '"Transc"',
+                '0',
+                f'{tiempo_max}',
+                f'{len(segmentos_transc)}'
+            ])
+
+            for segmento in segmentos_transc:
+                contenido.extend([
+                    f'{segmento.tiempo_inicio}',
+                    f'{segmento.tiempo_fin}',
+                    f'"{segmento.texto}"'
+                ])
+
+            # Tier Errors
+            contenido.extend([
+                '"IntervalTier"',
+                '"Errors"',
+                '0',
+                f'{tiempo_max}',
+                f'{len(segmentos_errores)}'
+            ])
+
+            for error in segmentos_errores:
+                texto_error = f"{error.tipo_error}: Esperado='{error.texto_esperado}' | Encontrado='{error.texto_encontrado}'"
+                contenido.extend([
+                    f'{error.tiempo_inicio}',
+                    f'{error.tiempo_fin}',
+                    f'"{texto_error}"'
+                ])
+
+            with open(ruta_salida, 'w', encoding='utf-8') as f:
+                f.write('\n'.join(contenido))
+
             return True
-        except Exception as e:
-            print(f"Error generando TextGrid: {e}")
-            return False
-
-    def detect_errors_with_espeak(self, transc_tier: List[TranscriptionSegment],
-                                 ipu_tier: List[TranscriptionSegment]) -> List[Dict[str, Any]]:
-        """
-        Detectar errores usando espeak-ng para comparar pronunciación
-        Args:
-            transc_tier: Segmentos de transcripción
-            ipu_tier: Segmentos IPU
-        Returns:
-            Lista de errores detectados
-        """
-        errors = []
-
-        try:
-            for i, (transc_seg, ipu_seg) in enumerate(zip(transc_tier, ipu_tier)):
-                transc_phonemes = self._get_phonemes_espeak(transc_seg.text)
-                ipu_phonemes = self._get_phonemes_espeak(ipu_seg.text)
-                similarity = self._calculate_phoneme_similarity(transc_phonemes, ipu_phonemes)
-                mae_error = 0.0
-                rmse_error = 0.0
-                combined_error = 0.0
-
-                if self.sml and transc_phonemes and ipu_phonemes:
-                    # Convertir a vectores numéricos
-                    transc_vec = [float(ord(c)) for c in transc_phonemes[:20]]
-                    ipu_vec = [float(ord(c)) for c in ipu_phonemes[:20]]
-                    max_len = max(len(transc_vec), len(ipu_vec))
-                    transc_vec.extend([0.0] * (max_len - len(transc_vec)))
-                    ipu_vec.extend([0.0] * (max_len - len(ipu_vec)))
-                    mae_error = float(self.sml.mae_metric(transc_vec, ipu_vec))
-                    rmse_error = float(self.sml.rmse_metric(transc_vec, ipu_vec))
-                    combined_error = (mae_error + rmse_error) / 2.0
-                    error_threshold = 50.0  # Ajustar
-
-                    should_flag_error = combined_error > error_threshold or similarity < 0.8
-                else:
-                    should_flag_error = similarity < 0.8
-
-                if should_flag_error:
-                    error = {
-                        'segment_index': i,
-                        'transc_text': transc_seg.text,
-                        'ipu_text': ipu_seg.text,
-                        'transc_phonemes': transc_phonemes,
-                        'ipu_phonemes': ipu_phonemes,
-                        'similarity': similarity,
-                        'mae_error': mae_error,
-                        'rmse_error': rmse_error,
-                        'combined_error': combined_error,
-                        'start_time': transc_seg.start_time,
-                        'end_time': transc_seg.end_time
-                    }
-                    errors.append(error)
-
-        except Exception as e:
-            print(f"Error detecting errors with espeak: {e}")
-        return errors
-
-    def _get_phonemes_espeak(self, text: str) -> str:
-        """Obtiener fonemas usando espeak-ng"""
-        try:
-            result = subprocess.run(
-                ['espeak-ng', '-q', '--ipa', '-s', '100', text],
-                capture_output=True,
-                text=True,
-                timeout=5
-            )
-            return result.stdout.strip()
         except:
-            return text
-
-    def _calculate_phoneme_similarity(self, phonemes1: str, phonemes2: str) -> float:
-        """Calcular similitud entre fonemas usando sml.py"""
-        if not phonemes1 or not phonemes2:
-            return 0.0
-        if self.sml:
-            vec1 = [float(ord(c)) for c in phonemes1]
-            vec2 = [float(ord(c)) for c in phonemes2]
-            max_len = max(len(vec1), len(vec2))
-            vec1.extend([0.0] * (max_len - len(vec1)))
-            vec2.extend([0.0] * (max_len - len(vec2)))
-            mae = float(self.sml.mae_metric(vec1, vec2))
-            rmse = float(self.sml.rmse_metric(vec1, vec2))
-            max_possible_error = max(max(vec1), max(vec2)) if vec1 and vec2 else 1.0
-            similarity = 1.0 - (mae / max_possible_error) if max_possible_error > 0 else 0.0
-            return max(0.0, min(1.0, similarity))
-
-        # Fallback a difflib
-        matcher = difflib.SequenceMatcher(None, phonemes1, phonemes2)
-        return matcher.ratio()
-
-    def generate_textgrid_transc_errors(self, errors: List[Dict[str, Any]],
-                                       output_path: str) -> bool:
-        """
-        Generar tier TranscErrors con errores detectados
-        Args:
-            errors: Lista de errores
-            output_path: Ruta de salida
-
-        Returns:
-            True si se generó exitosamente
-        """
-        try:
-            if not TEXTGRID_AVAILABLE:
-                return self._generate_errors_textgrid_manually(errors, output_path)
-            tg = textgrid.TextGrid()
-            if not errors:
-                tg.maxTime = 1.0
-                tg.write(output_path)
-                return True
-            max_time = max([error['end_time'] for error in errors])
-            tg.maxTime = max_time
-            errors_tier = textgrid.IntervalTier(name="TranscErrors", minTime=0, maxTime=max_time)
-            for error in errors:
-                error_text = f"Esperado: {error['transc_text']} | Encontrado: {error['ipu_text']} | Similarity: {error['similarity']:.2f}"
-                interval = textgrid.Interval(
-                    minTime=error['start_time'],
-                    maxTime=error['end_time'],
-                    mark=error_text
-                )
-                errors_tier.intervals.append(interval)
-            tg.tiers.append(errors_tier)
-            tg.write(output_path)
-            return True
-        except Exception as e:
-            print(f"Error generando TranscErrors TextGrid: {e}")
             return False
 
-    def play_and_validate(self, audio_path: str, error_segments: List[Dict[str, Any]]) -> str:
-        """
-        Facilitar validación manual de errores
-
-        Args:
-            audio_path: Ruta al archivo de audio
-            error_segments: Lista de segmentos con errores
-        """
-        validation_report = []
-        validation_report.append("=== REPORTE DE VALIDACIÓN MANUAL ===\n")
-        validation_report.append(f"Archivo de audio: {audio_path}")
-        validation_report.append(f"Total de errores detectados: {len(error_segments)}\n")
-        for i, error in enumerate(error_segments, 1):
-            validation_report.append(f"Error {i}:")
-            start_time = error.get('start_time', 0.0)
-            end_time = error.get('end_time', 1.0)
-            validation_report.append(f"  Tiempo: {start_time:.2f}s - {end_time:.2f}s")
-            # Manejar diferentes formatos de error
-            if 'transc_text' in error and 'ipu_text' in error:
-                # Formato espeak
-                validation_report.append(f"  Transcripción esperada: '{error['transc_text']}'")
-                validation_report.append(f"  Transcripción IPU: '{error['ipu_text']}'")
-                validation_report.append(f"  Similitud fonética: {error.get('similarity', 0.0):.2f}")
-            elif 'html_words' in error and 'ipu_words' in error:
-                # Formato de alineación
-                html_text = ' '.join(error['html_words']) if isinstance(error['html_words'], list) else str(error['html_words'])
-                ipu_text = ' '.join(error['ipu_words']) if isinstance(error['ipu_words'], list) else str(error['ipu_words'])
-                validation_report.append(f"  Texto HTML: '{html_text}'")
-                validation_report.append(f"  Texto IPU: '{ipu_text}'")
-                validation_report.append(f"  Similitud: {error.get('similarity', 0.0):.2f}")
-            else:
-                # Formato genérico
-                validation_report.append(f"  Tipo de error: {error.get('type', 'unknown')}")
-                validation_report.append(f"  Detalles: {str(error)}")
-            validation_report.append(f"  Recomendación: Validar manualmente usando Praat")
-            validation_report.append("")
-        validation_report.append("=== INSTRUCCIONES DE VALIDACIÓN ===")
-        validation_report.append("1. Abrir el archivo de audio en Praat")
-        validation_report.append("2. Cargar el archivo TextGrid con errores")
-        validation_report.append("3. Escuchar cada segmento marcado como error")
-        validation_report.append("4. Confirmar o corregir las discrepancias detectadas")
-        validation_report.append("5. Documentar hallazgos en este reporte")
-        validation_report.append("")
-        validation_report.append("=== RESUMEN ESTADÍSTICO ===")
-        validation_report.append(f"- Errores de alineación: {len([e for e in error_segments if 'html_words' in e])}")
-        validation_report.append(f"- Errores fonéticos: {len([e for e in error_segments if 'transc_text' in e])}")
-        validation_report.append(f"- Similitud promedio: {sum([e.get('similarity', 0.0) for e in error_segments]) / len(error_segments):.3f}" if error_segments else "- Sin errores")
-        return "\n".join(validation_report)
-
-    def cross_validate_alignment(self, ipu_segments: List[TranscriptionSegment],
-                                n_folds: int = 5) -> Dict[str, Any]:
-        """
-        Realizar validación cruzada del algoritmo de alineación usando sml.py
-        Args:
-            ipu_segments: Segmentos IPU
-            n_folds: Número de pliegues para validación cruzada
-        Returns:
-            Diccionario con resultados de validación cruzada
-        """
-        if not self.sml or not ipu_segments:
-            return {'error': 'sml.py no disponible o sin segmentos IPU'}
-
+    def procesar_alineacion(self, dir_html: str, archivo_textgrid: str, dir_salida: str) -> Dict:
+        """Procesa alineación completa"""
         try:
-            # Preparar dataset para validación cruzada
-            # Convertir segmentos a formato numérico
-            dataset = []
-            for seg in ipu_segments:
-                if seg.text and seg.text.strip() not in ['#', '_', '']:
-                    dataset.append([
-                        seg.start_time,
-                        seg.end_time,
-                        len(seg.text),
-                        float(ord(seg.text[0])) if seg.text else 0.0,  # Primer carácter como feature
-                        len(seg.text.split())  # Número de palabras
-                    ])
+            os.makedirs(dir_salida, exist_ok=True)
 
-            if len(dataset) < n_folds:
-                return {'error': f'Dataset muy pequeño para {n_folds} pliegues'}
+            # Extraer texto HTML
+            texto_html = self.extraer_texto_html(dir_html)
+            if not texto_html:
+                raise ValueError("No se pudo extraer texto HTML")
 
-            folds = self.sml.cross_validation_split(dataset, n_folds)
-            fold_results = []
-            for i, fold in enumerate(folds):
-                test_fold = fold
-                train_folds = [f for j, f in enumerate(folds) if j != i]
-                train_data = [item for fold in train_folds for item in fold]
+            # Parsear segmentos IPU
+            segmentos_ipu = self.parsear_textgrid_ipu(archivo_textgrid)
+            if not segmentos_ipu:
+                raise ValueError("No se pudieron extraer segmentos IPU")
 
-                # Evaluar usando métricas de sml.py
-                if len(train_data) > 0 and len(test_fold) > 0:
-                    # Extraer valores objetivo (duración)
-                    test_targets = [row[1] - row[0] for row in test_fold]
-                    # Usar algoritmo baseline de sml.py
-                    predicted = self.sml.zero_rule_algorithm_regression(train_data, test_fold)
-                    # Calcular métricas
-                    mae = float(self.sml.mae_metric(test_targets, predicted))
-                    rmse = float(self.sml.rmse_metric(test_targets, predicted))
-                    fold_results.append({
-                        'fold': i + 1,
-                        'mae': mae,
-                        'rmse': rmse,
-                        'train_size': len(train_data),
-                        'test_size': len(test_fold)
-                    })
+            # Crear tier transcripción
+            segmentos_transc = self.crear_tier_transcripcion(texto_html, segmentos_ipu)
 
-            # Calcular estadísticas agregadas
-            if fold_results:
-                avg_mae = sum(r['mae'] for r in fold_results) / len(fold_results)
-                avg_rmse = sum(r['rmse'] for r in fold_results) / len(fold_results)
+            # Detectar errores
+            segmentos_errores = self.detectar_errores(segmentos_transc, segmentos_ipu)
 
-                return {
-                    'success': True,
-                    'n_folds': n_folds,
-                    'avg_mae': avg_mae,
-                    'avg_rmse': avg_rmse,
-                    'fold_results': fold_results,
-                    'dataset_size': len(dataset)
-                }
+            # Generar TextGrid
+            ruta_textgrid_salida = os.path.join(dir_salida, "transcripcion_alineada.TextGrid")
+            self.generar_textgrid(segmentos_transc, segmentos_errores, ruta_textgrid_salida)
+
+            # Calcular métricas
+            if segmentos_transc and segmentos_ipu:
+                similitudes = []
+                for i in range(min(len(segmentos_transc), len(segmentos_ipu))):
+                    sim = self.calcular_similitud(
+                        self.normalizar_texto(segmentos_transc[i].texto),
+                        self.normalizar_texto(segmentos_ipu[i].texto)
+                    )
+                    similitudes.append(sim)
+
+                similitud_promedio = sum(similitudes) / len(similitudes)
+                tasa_errores = len(segmentos_errores) / len(segmentos_transc)
             else:
-                return {'error': 'No se pudieron calcular resultados de validación'}
-
-        except Exception as e:
-            return {'error': f'Error en validación cruzada: {str(e)}'}
-
-    def evaluate_alignment_quality(self, alignment_result: AlignmentResult) -> Dict[str, Any]:
-        """
-        Evalúar la calidad de la alineación usando métricas de sml.py
-
-        Args:
-            alignment_result: Resultado de alineación
-
-        Returns:
-            Diccionario con métricas de calidad
-        """
-        if not self.sml or not alignment_result.transcription_segments:
-            return {'error': 'sml.py no disponible o sin segmentos'}
-
-        try:
-            # Preparar datos para evaluación
-            durations_transc = [seg.end_time - seg.start_time for seg in alignment_result.transcription_segments]
-            durations_ipu = [seg.end_time - seg.start_time for seg in alignment_result.ipu_segments]
-
-            # Igualar longitudes
-            min_len = min(len(durations_transc), len(durations_ipu))
-            durations_transc = durations_transc[:min_len]
-            durations_ipu = durations_ipu[:min_len]
-
-            if len(durations_transc) == 0:
-                return {'error': 'No hay segmentos para evaluar'}
-
-            # Calcular métricas usando sml.py
-            mae = float(self.sml.mae_metric(durations_ipu, durations_transc))
-            rmse = float(self.sml.rmse_metric(durations_ipu, durations_transc))
-
-            # Calcular estadísticas adicionales
-            dataset = [[d1, d2] for d1, d2 in zip(durations_transc, durations_ipu)]
-            means = self.sml.column_means(dataset)
-            stdevs = self.sml.column_stdevs(dataset, means)
+                similitud_promedio = 0.0
+                tasa_errores = 0.0
 
             return {
-                'success': True,
-                'mae': mae,
-                'rmse': rmse,
-                'mean_duration_transc': means[0] if len(means) > 0 else 0.0,
-                'mean_duration_ipu': means[1] if len(means) > 1 else 0.0,
-                'stdev_duration_transc': stdevs[0] if len(stdevs) > 0 else 0.0,
-                'stdev_duration_ipu': stdevs[1] if len(stdevs) > 1 else 0.0,
-                'num_segments': len(durations_transc),
-                'num_errors': len(alignment_result.errors)
+                'segmentos_transc': segmentos_transc,
+                'segmentos_ipu': segmentos_ipu,
+                'segmentos_errores': segmentos_errores,
+                'similitud_promedio': similitud_promedio,
+                'tasa_errores': tasa_errores
             }
 
         except Exception as e:
-            return {'error': f'Error evaluando calidad: {str(e)}'}
+            raise ValueError(f"Error de procesamiento: {e}")
 
-    def process_transcription_alignment(self, html_path: str, textgrid_path: str,
-                                      audio_path: str, output_dir: str) -> Dict[str, Any]:
-        """
-        Procesar alineación completa de transcripción
-
-        Args:
-            html_path: Ruta al archivo HTML o directorio con archivos HTML
-            textgrid_path: Ruta al archivo TextGrid
-            audio_path: Ruta al archivo de audio
-            output_dir: Directorio de salida
-
-        Returns:
-            Diccionario con resultados del procesamiento
-        """
-        results = {
-            'success': False,
-            'html_text': '',
-            'ipu_segments': [],
-            'alignment_result': None,
-            'errors': [],
-            'output_files': [],
-            'validation_report': ''
-        }
-
-        try:
-            # Paso 1: Extraer texto del HTML
-            print("Extrayendo texto de transcripción HTML...")
-            if os.path.isdir(html_path):
-                html_text = self.parse_multiple_html_files(html_path)
-            else:
-                html_text = self.parse_transcription_html(html_path)
-            results['html_text'] = html_text
-            if not html_text:
-                print("No se pudo extraer texto del HTML")
-                return results
-            # Paso 2: Extraer segmentos IPU
-            print("Extrayendo segmentos IPU...")
-            ipu_segments = self.extract_ipu_segments(textgrid_path)
-            results['ipu_segments'] = ipu_segments
-            if not ipu_segments:
-                print("No se pudieron extraer segmentos IPU")
-                return results
-            # Paso 3: Alinear transcripción con IPU
-            print("Alineando transcripción con IPU...")
-            alignment_result = self.align_transcription_to_ipu(html_text, ipu_segments)
-            results['alignment_result'] = alignment_result
-            # Paso 4: Generar TextGrid con tier Transc
-            print("Generando TextGrid con tier Transc...")
-            transc_output = os.path.join(output_dir, "transcription_aligned.TextGrid")
-            if self.generate_textgrid_transc(alignment_result, transc_output):
-                results['output_files'].append(transc_output)
-                print(f"TextGrid Transc generado: {transc_output}")
-            # Paso 5: Detectar errores con espeak y de alineación
-            print("Detectando errores...")
-            espeak_errors = self.detect_errors_with_espeak(
-                alignment_result.transcription_segments,
-                alignment_result.ipu_segments
-            )
-            # Combinar errores de alineación y espeak
-            all_errors = alignment_result.errors.copy()
-            for error in espeak_errors:
-                if error not in all_errors:
-                    all_errors.append(error)
-            results['errors'] = all_errors
-            # Paso 6: Generar TextGrid con errores
-            print("Generando TextGrid con errores...")
-            errors_output = os.path.join(output_dir, "transcription_errors.TextGrid")
-            if self.generate_textgrid_transc_errors(all_errors, errors_output):
-                results['output_files'].append(errors_output)
-                print(f"TextGrid TranscErrors generado: {errors_output}")
-            # Paso 7: Evaluar calidad de alineación
-            print("Evaluando calidad de alineación...")
-            quality_metrics = self.evaluate_alignment_quality(alignment_result)
-            results['quality_metrics'] = quality_metrics
-            # Paso 8: Validación cruzada si hay suficientes datos
-            if len(ipu_segments) >= 5:
-                print("Realizando validación cruzada...")
-                cv_results = self.cross_validate_alignment(ipu_segments)
-                results['cross_validation'] = cv_results
-            # Paso 9: Generar reporte de validación
-            print("Generando reporte de validación...")
-            validation_report = self.play_and_validate(audio_path, all_errors)
-            results['validation_report'] = validation_report
-            # Guardar reporte
-            report_output = os.path.join(output_dir, "validation_report.txt")
-            with open(report_output, 'w', encoding='utf-8') as f:
-                f.write(validation_report)
-            results['output_files'].append(report_output)
-            results['success'] = True
-            print("Procesamiento completado exitosamente")
-        except Exception as e:
-            print(f"Error en procesamiento: {e}")
-            results['error'] = str(e)
-
-        return results
-
-    # Opciónal si la liberia textgrid no esta disponible
-    def _generate_textgrid_manually(self, alignment_result: AlignmentResult, output_path: str, tier_name: str) -> bool:
-        """
-        Generar TextGrid manualmente sin usar la librería textgrid
-        """
-        try:
-            if not alignment_result.transcription_segments:
-                max_time = 1.0
-            else:
-                max_time = max([seg.end_time for seg in alignment_result.transcription_segments])
-            # Crear contenido de TextGrid manualmente
-            content = []
-            content.append('File type = "ooTextFile"')
-            content.append('Object class = "TextGrid"')
-            content.append('')
-            content.append('0')
-            content.append(f'{max_time}')
-            content.append('<exists>')
-            content.append('1')
-            content.append('"IntervalTier"')
-            content.append(f'"{tier_name}"')
-            content.append('0')
-            content.append(f'{max_time}')
-            content.append(f'{len(alignment_result.transcription_segments)}')
-            for segment in alignment_result.transcription_segments:
-                content.append(f'{segment.start_time}')
-                content.append(f'{segment.end_time}')
-                content.append(f'"{segment.text}"')
-            with open(output_path, 'w', encoding='utf-8') as f:
-                f.write('\n'.join(content))
-            return True
-        except Exception as e:
-            print(f"Error generando TextGrid manually: {e}")
-            return False
-
-    def _generate_errors_textgrid_manually(self, errors: List[Dict[str, Any]], output_path: str) -> bool:
-        """
-        Generar TextGrid de errores manualmente sin usar la librería textgrid
-        """
-        try:
-            if not errors:
-                max_time = 1.0
-            else:
-                max_time = max([error.get('end_time', 1.0) for error in errors])
-
-            # Crear contenido de TextGrid manualmente
-            content = []
-            content.append('File type = "ooTextFile"')
-            content.append('Object class = "TextGrid"')
-            content.append('')
-            content.append('0')
-            content.append(f'{max_time}')
-            content.append('<exists>')
-            content.append('1')
-            content.append('"IntervalTier"')
-            content.append('"TranscErrors"')
-            content.append('0')
-            content.append(f'{max_time}')
-            content.append(f'{len(errors)}')
-            for error in errors:
-                if 'transc_text' in error and 'ipu_text' in error:
-                    # Formato espeak
-                    error_text = f"Esperado: {error['transc_text']} | Encontrado: {error['ipu_text']} | Similarity: {error.get('similarity', 0.0):.2f}"
-                    start_time = error.get('start_time', 0.0)
-                    end_time = error.get('end_time', 1.0)
-                elif 'html_words' in error and 'ipu_words' in error:
-                    # Formato de alineación
-                    html_text = ' '.join(error['html_words']) if isinstance(error['html_words'], list) else str(error['html_words'])
-                    ipu_text = ' '.join(error['ipu_words']) if isinstance(error['ipu_words'], list) else str(error['ipu_words'])
-                    error_text = f"HTML: {html_text} | IPU: {ipu_text} | Similarity: {error.get('similarity', 0.0):.2f}"
-                    start_time = error.get('start_time', 0.0)
-                    end_time = error.get('end_time', 1.0)
-                else:
-                    # Formato genérico
-                    error_text = f"Error: {error.get('type', 'unknown')} | Details: {str(error)}"
-                    start_time = error.get('start_time', 0.0)
-                    end_time = error.get('end_time', 1.0)
-
-                content.append(f'{start_time}')
-                content.append(f'{end_time}')
-                content.append(f'"{error_text}"')
-
-            with open(output_path, 'w', encoding='utf-8') as f:
-                f.write('\n'.join(content))
-
-            return True
-
-        except Exception as e:
-            print(f"Error generando errors TextGrid manually: {e}")
-            return False
 
 def main():
-    """Función principal"""
     if len(sys.argv) < 4:
-        print("Uso: python transcription_alignment.py <html_file> <textgrid_file> <audio_file> [output_dir]")
+        print("Uso: python transcription_alignment_simple.py <dir_html> <archivo_textgrid> <dir_salida>")
         return
 
-    html_file = sys.argv[1]
-    textgrid_file = sys.argv[2]
-    audio_file = sys.argv[3]
-    output_dir = sys.argv[4] if len(sys.argv) > 4 else "output"
-    os.makedirs(output_dir, exist_ok=True)
-    aligner = TranscriptionAligner()
-    results = aligner.process_transcription_alignment(
-        html_file, textgrid_file, audio_file, output_dir
-    )
-    if results['success']:
-        print(f"\n=== RESULTADOS ===")
-        print(f"Segmentos IPU extraídos: {len(results['ipu_segments'])}")
-        print(f"Errores detectados: {len(results['errors'])}")
-        print(f"Archivos generados: {len(results['output_files'])}")
-        for output_file in results['output_files']:
-            print(f"  - {output_file}")
-        if 'quality_metrics' in results and results['quality_metrics'].get('success'):
-            qm = results['quality_metrics']
-            print(f"\n=== MÉTRICAS DE CALIDAD (usando sml.py) ===")
-            print(f"MAE (Error Absoluto Medio): {qm['mae']:.3f}")
-            print(f"RMSE (Raíz del Error Cuadrático Medio): {qm['rmse']:.3f}")
-            print(f"Duración promedio Transc: {qm['mean_duration_transc']:.3f}s")
-            print(f"Duración promedio IPU: {qm['mean_duration_ipu']:.3f}s")
-            print(f"Número de segmentos evaluados: {qm['num_segments']}")
-        if 'cross_validation' in results and results['cross_validation'].get('success'):
-            cv = results['cross_validation']
-            print(f"\n=== VALIDACIÓN CRUZADA (usando sml.py) ===")
-            print(f"Número de pliegues: {cv['n_folds']}")
-            print(f"MAE promedio: {cv['avg_mae']:.3f}")
-            print(f"RMSE promedio: {cv['avg_rmse']:.3f}")
-            print(f"Tamaño del dataset: {cv['dataset_size']}")
-        print(f"\n=== REPORTE DE VALIDACIÓN ===")
-        print(results['validation_report'])
-    else:
-        print(f"Error en procesamiento: {results.get('error', 'Error desconocido')}")
+    dir_html = sys.argv[1]
+    archivo_textgrid = sys.argv[2]
+    dir_salida = sys.argv[3]
+
+    print("=== SISTEMA DE ALINEACIÓN DE TRANSCRIPCIONES ===")
+    print(f"HTML: {dir_html}")
+    print(f"TextGrid: {archivo_textgrid}")
+    print(f"Salida: {dir_salida}")
+
+    alineador = AlineadorTranscripcion()
+
+    try:
+        resultado = alineador.procesar_alineacion(dir_html, archivo_textgrid, dir_salida)
+
+        print("\n=== RESULTADOS ===")
+        print(f"Segmentos transcripción: {len(resultado['segmentos_transc'])}")
+        print(f"Segmentos IPU: {len(resultado['segmentos_ipu'])}")
+        print(f"Errores detectados: {len(resultado['segmentos_errores'])}")
+        print(f"Similitud promedio: {resultado['similitud_promedio']:.3f}")
+        print(f"Tasa de errores: {resultado['tasa_errores']:.3f}")
+
+        print(f"\nArchivo generado: transcripcion_alineada.TextGrid")
+
+    except Exception as e:
+        print(f"Error: {e}")
+        sys.exit(1)
+
 
 if __name__ == "__main__":
     main()
